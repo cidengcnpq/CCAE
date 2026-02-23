@@ -105,7 +105,7 @@ def collate_fn_stratified(batch):
     return torch.stack(images), torch.stack(sensor_ids)
 
 # ==============================================================================
-# 2. FUNÇÃO DE PERDA E ARQUITETURA DO MODELO (SEM ALTERAÇÕES)
+# 2. FUNÇÃO DE PERDA E ARQUITETURA DO MODELO
 # ==============================================================================
 def ssim_loss(x, y):
     return torch.sqrt(torch.mean((1 - ssim(x, y, data_range=1.0, size_average=False)) ** 2))
@@ -165,7 +165,7 @@ class CCAE(nn.Module):
         return x_reconstructed, sensor_logits
 
 # ==============================================================================
-# 3. FUNÇÃO `objective` PARA O OPTUNA (MODIFICADA)
+# 3. FUNÇÃO `objective` PARA O OPTUNA
 # ==============================================================================
 def objective(trial):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -177,7 +177,7 @@ def objective(trial):
     params = {
         'learning_rate': trial.suggest_float('learning_rate', 1e-4, 1e-1, log=True),
         'batch_size': trial.suggest_categorical('batch_size', [32, 64, 128]),
-        #'bottleneck_channels': trial.suggest_int('bottleneck_channels', 2, 8, step=1),
+        
         'dropout_rate': trial.suggest_float('dropout_rate', 0.1, 0.5, step=0.1)
     }
     print(f"\n--- Iniciando Trial {trial.number} com parâmetros: {params} ---")
@@ -203,8 +203,7 @@ def objective(trial):
         train_set = Subset(full_dataset, train_idx)
         val_set = Subset(full_dataset, val_idx)
 
-        # Como as transformações já foram pré-aplicadas, não precisamos definir um 'transform'
-        # para os DataLoaders.
+        
         train_loader = DataLoader(train_set, batch_size=params['batch_size'], shuffle=True, collate_fn=collate_fn_stratified, pin_memory=True)
         val_loader = DataLoader(val_set, batch_size=params['batch_size'], shuffle=False, collate_fn=collate_fn_stratified, pin_memory=True)
         
@@ -345,4 +344,5 @@ if __name__ == "__main__":
         for key, value in best_trial.params.items():
             print(f"    {key}: {value}")
     else:
+
         print("Nenhum trial foi completado com sucesso.")
