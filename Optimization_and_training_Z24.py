@@ -12,9 +12,9 @@ from sklearn.model_selection import StratifiedKFold
 import gc
 import optuna
 
-# =============================================================================
+# ==============================================================================
 # CABEÇALHO DE CONFIGURAÇÃO E INPUTS
-# =============================================================================
+# ==============================================================================
 # --- Configurações de Diretórios ---
 BASE_DIR = "C:/Users/Alienware/Documents/Victor_Higino/Imagens_CWT_Z24_v1_matlab"
 INTACT_CONDITION_FOLDER = 'd_0_intact'
@@ -346,4 +346,5 @@ if __name__ == "__main__":
     else:
 
         print("Nenhum trial foi completado com sucesso.")
+
 
