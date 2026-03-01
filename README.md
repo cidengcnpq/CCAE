@@ -55,6 +55,9 @@
 ###  **● Codes for discution Section 5 are on files:**
 `discussion_section_5_Yellow_Frame.py`, `discussion_section_5_Z24.py`
 
+###  **● Code for computational time evaluation is in file:**
+`Time_computational_cost_evaluation.py`
+
 
 
 [^3]: [A. Rytter, Vibrational based inspection of civil engineering structures. Dept. of Building Technology and Structural Engineering, Aalborg University, Fracture and Dynamics. R9314 (44) (1993).](https://vbn.aau.dk/en/publications/vibrational-based-inspection-of-civil-engineering-structures)
