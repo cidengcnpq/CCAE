@@ -55,7 +55,7 @@
 ###  **● Codes for discution Section 5 are on files:**
 `discussion_section_5_Yellow_Frame.py`, `discussion_section_5_Z24.py`
 
-###  **● Code for computational time evaluation is in file:**
+###  **● Code for computational time evaluation is on file:**
 `Time_computational_cost_evaluation.py`
 
 
