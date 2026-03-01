@@ -40,6 +40,9 @@
 ###  **● Code for model optimization and training are on files:**
 `Optimization_and_training_yellow_frame.py`, `Optimization_and_training_Z24.py`
 
+###  **● Models training logs are on paste:**
+`Models Training logs history`
+
 ###  **● Code for results boxplots visualization are on files:**
 `Results_boxplot_yellow_frame.py`, `Results_boxplot_Z24.py`
 
