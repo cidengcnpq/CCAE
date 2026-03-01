@@ -31,8 +31,8 @@
 ###  **● Code for results visualization are on files:**
 `Results_boxplot_yellow_frame.py`, `Results_boxplot_Z24.py`
 
-###  **● Code for Yellow Frame signal data pre-processing in MATLAB is on file:**
-`Generate_images_CWT_yellow_frame.m`
+###  **● Data and Code for Yellow Frame signal data pre-processing in MATLAB is on file:**
+`ambient.mat`,`Generate_images_CWT_yellow_frame.m`
 
 ###  **● Data and Code for Z24 bridge signal data pre-processing in MATLAB are on files:**
 `Generate_Raw_data_Z24_Alves_et_al_2024.m`, `Z24_Raw_Data.zip`,`generate_image_CWT_Z24.m`,
