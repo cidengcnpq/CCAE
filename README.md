@@ -52,7 +52,7 @@
 ###  **● Code for KDE internals visualization are on files:**
 `visualize_embeddings_Yellow_Frame.py`, `visualize_embeddings_Z24.py`
 
-###  **● Codes for discution Sectio 5 are on files:**
+###  **● Codes for discution Section 5 are on files:**
 `discussion_section_5_Yellow_Frame.py`, `discussion_section_5_Z24.py`
 
 
