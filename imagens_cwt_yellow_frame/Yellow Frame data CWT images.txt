@@ -1,0 +1,13 @@
+To use the image data, you must extract the .zip files first. Files from parts 1 and 2 must be merged before testing the code.
+
+d_0_intact.zip
+Intact (training set): Normal condition used for training and validation, representing 70% of undamaged data.
+
+d_0_unknown.zip
+Intact (unknown): Normal condition used for testing, representing 30% of undamaged data.
+
+d_1 - part1.zip + d_1 - part2.zip
+Damage 1: Loosened bolts on all floors at both ends of the beam on the east face, north side.
+
+d_2 - part1.zip + d_2 - part2.zip
+Damage 2: Loosened bolts on floors 1 and 2 at both ends of the beam on the east face, north side.
