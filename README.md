@@ -1,7 +1,7 @@
 # <p align="center">Conditional Convolutional Autoencoder with Multi-Task Learning for Context-Driven Unsupervised Structural Assessment
 
 
-#### Victor Higino Meneguitte Alves[^1], PhD candidate in Civil Engineering
+#### Victor Higino Meneguitte Alves[^1], PhD Candidate in Civil Engineering
 -	Graduate Program in Civil Engineering, Faculty of Engineering, University of Juiz de Fora, Juiz de Fora, Minas Gerais, Brazil
 
 #### Alexandre Abrahão Cury[^2], Associate Professor
