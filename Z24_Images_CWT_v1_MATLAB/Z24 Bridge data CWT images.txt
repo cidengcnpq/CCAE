@@ -1,0 +1,22 @@
+To use the image data, you must extract the .zip files first.
+
+d_0_intact.zip
+Intact (training set): Normal condition used for training and validation, representing 70% of undamaged data.
+
+d_0_unknown.zip
+Intact (unknown): Normal condition used for testing, representing 30% of undamaged data.
+
+d_1.zip
+Damage 1: 20 mm vertical settlement at Koppigen-side pier.
+
+d_2.zip
+Damage 2: 40 mm vertical settlement at Koppigen-side pier.
+
+d_3.zip
+Damage 3: 80 mm vertical settlement at Koppigen-side pier.
+
+d_4.zip
+Damage 4: 95 mm vertical settlement at Koppigen-side pier.
+
+d_5.zip
+Damage 5: Lifting of pier, tilt of foundation
