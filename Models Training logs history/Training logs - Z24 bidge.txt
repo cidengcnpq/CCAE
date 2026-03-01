@@ -1,0 +1,2085 @@
+PS C:\Users\Alienware> cd "C:\Users\Alienware\Documents\Victor_Higino"
+PS C:\Users\Alienware\Documents\Victor_Higino> python Optimization_v11_mono-objective_RAMpreLoad_Z24.py
+--- Iniciando Otimização de Hiperparâmetros com Optuna ---
+[I 2026-01-25 00:48:45,994] A new study created in RDB with name: ccae_hyperparam_optimization_Z24
+
+--- Iniciando Trial 0 com parâmetros: {'learning_rate': 0.06414031736751022, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 0, Fold 1/4 ---
+
+--- Trial 0, Fold 2/4 ---
+
+--- Trial 0, Fold 3/4 ---
+
+--- Trial 0, Fold 4/4 ---
+🏁 Trial 0 concluído. Média das perdas de validação: 0.22057
+[I 2026-01-25 00:52:49,145] Trial 0 finished with value: 0.2205689549446106 and parameters: {'learning_rate': 0.06414031736751022, 'batch_size': 64, 'dropout_rate': 0.4}. Best is trial 0 with value: 0.2205689549446106.
+
+--- Iniciando Trial 1 com parâmetros: {'learning_rate': 0.014354249411932807, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 1, Fold 1/4 ---
+
+--- Trial 1, Fold 2/4 ---
+
+--- Trial 1, Fold 3/4 ---
+
+--- Trial 1, Fold 4/4 ---
+🏁 Trial 1 concluído. Média das perdas de validação: 0.20295
+[I 2026-01-25 00:54:58,752] Trial 1 finished with value: 0.20294505078345537 and parameters: {'learning_rate': 0.014354249411932807, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 2 com parâmetros: {'learning_rate': 0.04879107765528775, 'batch_size': 32, 'dropout_rate': 0.1} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 2, Fold 1/4 ---
+
+--- Trial 2, Fold 2/4 ---
+
+--- Trial 2, Fold 3/4 ---
+
+--- Trial 2, Fold 4/4 ---
+🏁 Trial 2 concluído. Média das perdas de validação: 0.23197
+[I 2026-01-25 00:57:10,306] Trial 2 finished with value: 0.23196687176823616 and parameters: {'learning_rate': 0.04879107765528775, 'batch_size': 32, 'dropout_rate': 0.1}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 3 com parâmetros: {'learning_rate': 0.00021419698055778774, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 3, Fold 1/4 ---
+
+--- Trial 3, Fold 2/4 ---
+
+--- Trial 3, Fold 3/4 ---
+
+--- Trial 3, Fold 4/4 ---
+🏁 Trial 3 concluído. Média das perdas de validação: 0.30460
+[I 2026-01-25 00:58:47,718] Trial 3 finished with value: 0.30459704250097275 and parameters: {'learning_rate': 0.00021419698055778774, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 4 com parâmetros: {'learning_rate': 0.0002756962738531223, 'batch_size': 128, 'dropout_rate': 0.1} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 4, Fold 1/4 ---
+
+--- Trial 4, Fold 2/4 ---
+
+--- Trial 4, Fold 3/4 ---
+
+--- Trial 4, Fold 4/4 ---
+🏁 Trial 4 concluído. Média das perdas de validação: 0.84388
+[I 2026-01-25 01:00:33,947] Trial 4 finished with value: 0.843878410756588 and parameters: {'learning_rate': 0.0002756962738531223, 'batch_size': 128, 'dropout_rate': 0.1}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 5 com parâmetros: {'learning_rate': 0.005672230734874665, 'batch_size': 128, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 5, Fold 1/4 ---
+
+--- Trial 5, Fold 2/4 ---
+
+--- Trial 5, Fold 3/4 ---
+
+--- Trial 5, Fold 4/4 ---
+🏁 Trial 5 concluído. Média das perdas de validação: 0.64121
+[I 2026-01-25 01:02:20,027] Trial 5 finished with value: 0.641206905245781 and parameters: {'learning_rate': 0.005672230734874665, 'batch_size': 128, 'dropout_rate': 0.30000000000000004}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 6 com parâmetros: {'learning_rate': 0.005715811175133186, 'batch_size': 32, 'dropout_rate': 0.1} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 6, Fold 1/4 ---
+
+--- Trial 6, Fold 2/4 ---
+
+--- Trial 6, Fold 3/4 ---
+
+--- Trial 6, Fold 4/4 ---
+🏁 Trial 6 concluído. Média das perdas de validação: 0.22251
+[I 2026-01-25 01:03:59,721] Trial 6 finished with value: 0.22250942420214415 and parameters: {'learning_rate': 0.005715811175133186, 'batch_size': 32, 'dropout_rate': 0.1}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 7 com parâmetros: {'learning_rate': 0.007435912134828933, 'batch_size': 128, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 7, Fold 1/4 ---
+
+--- Trial 7, Fold 2/4 ---
+
+--- Trial 7, Fold 3/4 ---
+
+--- Trial 7, Fold 4/4 ---
+🏁 Trial 7 concluído. Média das perdas de validação: 0.30699
+[I 2026-01-25 01:05:56,028] Trial 7 finished with value: 0.3069877177476883 and parameters: {'learning_rate': 0.007435912134828933, 'batch_size': 128, 'dropout_rate': 0.5}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 8 com parâmetros: {'learning_rate': 0.00019651794580077705, 'batch_size': 64, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 8, Fold 1/4 ---
+
+--- Trial 8, Fold 2/4 ---
+
+--- Trial 8, Fold 3/4 ---
+
+--- Trial 8, Fold 4/4 ---
+🏁 Trial 8 concluído. Média das perdas de validação: 0.57495
+[I 2026-01-25 01:07:42,322] Trial 8 finished with value: 0.574948150664568 and parameters: {'learning_rate': 0.00019651794580077705, 'batch_size': 64, 'dropout_rate': 0.30000000000000004}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 9 com parâmetros: {'learning_rate': 0.033850447928526636, 'batch_size': 32, 'dropout_rate': 0.1} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 9, Fold 1/4 ---
+
+--- Trial 9, Fold 2/4 ---
+
+--- Trial 9, Fold 3/4 ---
+
+--- Trial 9, Fold 4/4 ---
+🏁 Trial 9 concluído. Média das perdas de validação: 0.21947
+[I 2026-01-25 01:09:38,356] Trial 9 finished with value: 0.2194719761610031 and parameters: {'learning_rate': 0.033850447928526636, 'batch_size': 32, 'dropout_rate': 0.1}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 10 com parâmetros: {'learning_rate': 0.001557540310011343, 'batch_size': 32, 'dropout_rate': 0.2} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 10, Fold 1/4 ---
+
+--- Trial 10, Fold 2/4 ---
+
+--- Trial 10, Fold 3/4 ---
+
+--- Trial 10, Fold 4/4 ---
+🏁 Trial 10 concluído. Média das perdas de validação: 0.23912
+[I 2026-01-25 01:11:11,144] Trial 10 finished with value: 0.2391154384240508 and parameters: {'learning_rate': 0.001557540310011343, 'batch_size': 32, 'dropout_rate': 0.2}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 11 com parâmetros: {'learning_rate': 0.019661301977097978, 'batch_size': 32, 'dropout_rate': 0.2} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 11, Fold 1/4 ---
+
+--- Trial 11, Fold 2/4 ---
+
+--- Trial 11, Fold 3/4 ---
+
+--- Trial 11, Fold 4/4 ---
+🏁 Trial 11 concluído. Média das perdas de validação: 0.20489
+[I 2026-01-25 01:13:02,886] Trial 11 finished with value: 0.2048903852701187 and parameters: {'learning_rate': 0.019661301977097978, 'batch_size': 32, 'dropout_rate': 0.2}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 12 com parâmetros: {'learning_rate': 0.0176467632055224, 'batch_size': 32, 'dropout_rate': 0.2} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 12, Fold 1/4 ---
+
+--- Trial 12, Fold 2/4 ---
+
+--- Trial 12, Fold 3/4 ---
+
+--- Trial 12, Fold 4/4 ---
+🏁 Trial 12 concluído. Média das perdas de validação: 0.23463
+[I 2026-01-25 01:14:40,183] Trial 12 finished with value: 0.23462545312941074 and parameters: {'learning_rate': 0.0176467632055224, 'batch_size': 32, 'dropout_rate': 0.2}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 13 com parâmetros: {'learning_rate': 0.0011339233499554355, 'batch_size': 32, 'dropout_rate': 0.2} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 13, Fold 1/4 ---
+
+--- Trial 13, Fold 2/4 ---
+
+--- Trial 13, Fold 3/4 ---
+
+--- Trial 13, Fold 4/4 ---
+🏁 Trial 13 concluído. Média das perdas de validação: 0.24498
+[I 2026-01-25 01:16:28,476] Trial 13 finished with value: 0.2449767105281353 and parameters: {'learning_rate': 0.0011339233499554355, 'batch_size': 32, 'dropout_rate': 0.2}. Best is trial 1 with value: 0.20294505078345537.
+
+--- Iniciando Trial 14 com parâmetros: {'learning_rate': 0.016245022560939622, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 14, Fold 1/4 ---
+
+--- Trial 14, Fold 2/4 ---
+
+--- Trial 14, Fold 3/4 ---
+
+--- Trial 14, Fold 4/4 ---
+🏁 Trial 14 concluído. Média das perdas de validação: 0.19846
+[I 2026-01-25 01:18:53,747] Trial 14 finished with value: 0.19846449978649616 and parameters: {'learning_rate': 0.016245022560939622, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 14 with value: 0.19846449978649616.
+
+--- Iniciando Trial 15 com parâmetros: {'learning_rate': 0.09606349710687394, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 15, Fold 1/4 ---
+✂️ Trial 15 podado no fold 1.
+[I 2026-01-25 01:19:39,338] Trial 15 pruned.
+
+--- Iniciando Trial 16 com parâmetros: {'learning_rate': 0.01557462986176289, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 16, Fold 1/4 ---
+✂️ Trial 16 podado no fold 1.
+[I 2026-01-25 01:20:05,533] Trial 16 pruned.
+
+--- Iniciando Trial 17 com parâmetros: {'learning_rate': 0.0019615982515717835, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 17, Fold 1/4 ---
+
+--- Trial 17, Fold 2/4 ---
+
+--- Trial 17, Fold 3/4 ---
+
+--- Trial 17, Fold 4/4 ---
+🏁 Trial 17 concluído. Média das perdas de validação: 0.18230
+[I 2026-01-25 01:22:41,186] Trial 17 finished with value: 0.18229877296835184 and parameters: {'learning_rate': 0.0019615982515717835, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 17 with value: 0.18229877296835184.
+
+--- Iniciando Trial 18 com parâmetros: {'learning_rate': 0.001796998849695599, 'batch_size': 128, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 18, Fold 1/4 ---
+✂️ Trial 18 podado no fold 1.
+[I 2026-01-25 01:23:05,301] Trial 18 pruned.
+
+--- Iniciando Trial 19 com parâmetros: {'learning_rate': 0.0006510422251330526, 'batch_size': 64, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 19, Fold 1/4 ---
+✂️ Trial 19 podado no fold 1.
+[I 2026-01-25 01:23:28,725] Trial 19 pruned.
+
+--- Iniciando Trial 20 com parâmetros: {'learning_rate': 0.003058651579091413, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 20, Fold 1/4 ---
+
+--- Trial 20, Fold 2/4 ---
+
+--- Trial 20, Fold 3/4 ---
+
+--- Trial 20, Fold 4/4 ---
+🏁 Trial 20 concluído. Média das perdas de validação: 0.18984
+[I 2026-01-25 01:26:07,283] Trial 20 finished with value: 0.1898444341495633 and parameters: {'learning_rate': 0.003058651579091413, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 17 with value: 0.18229877296835184.
+
+--- Iniciando Trial 21 com parâmetros: {'learning_rate': 0.002670765593102721, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 21, Fold 1/4 ---
+
+--- Trial 21, Fold 2/4 ---
+
+--- Trial 21, Fold 3/4 ---
+
+--- Trial 21, Fold 4/4 ---
+🏁 Trial 21 concluído. Média das perdas de validação: 0.17973
+[I 2026-01-25 01:28:49,963] Trial 21 finished with value: 0.17972668539732695 and parameters: {'learning_rate': 0.002670765593102721, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 21 with value: 0.17972668539732695.
+
+--- Iniciando Trial 22 com parâmetros: {'learning_rate': 0.0026647732348201517, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 22, Fold 1/4 ---
+
+--- Trial 22, Fold 2/4 ---
+
+--- Trial 22, Fold 3/4 ---
+
+--- Trial 22, Fold 4/4 ---
+🏁 Trial 22 concluído. Média das perdas de validação: 0.16731
+[I 2026-01-25 01:31:36,148] Trial 22 finished with value: 0.16731084510684013 and parameters: {'learning_rate': 0.0026647732348201517, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 23 com parâmetros: {'learning_rate': 0.0006026352569668059, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 23, Fold 1/4 ---
+✂️ Trial 23 podado no fold 1.
+[I 2026-01-25 01:31:59,445] Trial 23 pruned.
+
+--- Iniciando Trial 24 com parâmetros: {'learning_rate': 0.0026924371578513446, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 24, Fold 1/4 ---
+
+--- Trial 24, Fold 2/4 ---
+
+--- Trial 24, Fold 3/4 ---
+
+--- Trial 24, Fold 4/4 ---
+🏁 Trial 24 concluído. Média das perdas de validação: 0.18825
+[I 2026-01-25 01:33:51,966] Trial 24 finished with value: 0.18825133424252272 and parameters: {'learning_rate': 0.0026924371578513446, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 25 com parâmetros: {'learning_rate': 0.0008489250154098257, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 25, Fold 1/4 ---
+
+--- Trial 25, Fold 2/4 ---
+
+--- Trial 25, Fold 3/4 ---
+
+--- Trial 25, Fold 4/4 ---
+🏁 Trial 25 concluído. Média das perdas de validação: 0.22547
+[I 2026-01-25 01:35:42,998] Trial 25 finished with value: 0.22547311894595623 and parameters: {'learning_rate': 0.0008489250154098257, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 26 com parâmetros: {'learning_rate': 0.00041899373909424717, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 26, Fold 1/4 ---
+✂️ Trial 26 podado no fold 1.
+[I 2026-01-25 01:36:10,732] Trial 26 pruned.
+
+--- Iniciando Trial 27 com parâmetros: {'learning_rate': 0.00010267695354506577, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 27, Fold 1/4 ---
+✂️ Trial 27 podado no fold 1.
+[I 2026-01-25 01:36:37,554] Trial 27 pruned.
+
+--- Iniciando Trial 28 com parâmetros: {'learning_rate': 0.0043909256076661695, 'batch_size': 128, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 28, Fold 1/4 ---
+✂️ Trial 28 podado no fold 1.
+[I 2026-01-25 01:37:08,725] Trial 28 pruned.
+
+--- Iniciando Trial 29 com parâmetros: {'learning_rate': 0.008373039740638024, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 29, Fold 1/4 ---
+
+--- Trial 29, Fold 2/4 ---
+
+--- Trial 29, Fold 3/4 ---
+
+--- Trial 29, Fold 4/4 ---
+🏁 Trial 29 concluído. Média das perdas de validação: 0.20627
+[I 2026-01-25 01:39:26,577] Trial 29 finished with value: 0.20626651495695114 and parameters: {'learning_rate': 0.008373039740638024, 'batch_size': 64, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 30 com parâmetros: {'learning_rate': 0.0019242132304942985, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 30, Fold 1/4 ---
+✂️ Trial 30 podado no fold 1.
+[I 2026-01-25 01:39:49,968] Trial 30 pruned.
+
+--- Iniciando Trial 31 com parâmetros: {'learning_rate': 0.0028863216385582404, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 31, Fold 1/4 ---
+
+--- Trial 31, Fold 2/4 ---
+
+--- Trial 31, Fold 3/4 ---
+
+--- Trial 31, Fold 4/4 ---
+🏁 Trial 31 concluído. Média das perdas de validação: 0.18333
+[I 2026-01-25 01:42:13,545] Trial 31 finished with value: 0.18333354406058788 and parameters: {'learning_rate': 0.0028863216385582404, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 32 com parâmetros: {'learning_rate': 0.0034531350871764956, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 32, Fold 1/4 ---
+
+--- Trial 32, Fold 2/4 ---
+
+--- Trial 32, Fold 3/4 ---
+
+--- Trial 32, Fold 4/4 ---
+🏁 Trial 32 concluído. Média das perdas de validação: 0.18708
+[I 2026-01-25 01:44:28,891] Trial 32 finished with value: 0.1870794566348195 and parameters: {'learning_rate': 0.0034531350871764956, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 33 com parâmetros: {'learning_rate': 0.0011066398125104619, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 33, Fold 1/4 ---
+
+--- Trial 33, Fold 2/4 ---
+
+--- Trial 33, Fold 3/4 ---
+
+--- Trial 33, Fold 4/4 ---
+🏁 Trial 33 concluído. Média das perdas de validação: 0.61250
+[I 2026-01-25 01:46:34,326] Trial 33 finished with value: 0.6125039523467422 and parameters: {'learning_rate': 0.0011066398125104619, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 34 com parâmetros: {'learning_rate': 0.002180242473741296, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 34, Fold 1/4 ---
+
+--- Trial 34, Fold 2/4 ---
+
+--- Trial 34, Fold 3/4 ---
+
+--- Trial 34, Fold 4/4 ---
+🏁 Trial 34 concluído. Média das perdas de validação: 0.18257
+[I 2026-01-25 01:48:50,280] Trial 34 finished with value: 0.1825726218521595 and parameters: {'learning_rate': 0.002180242473741296, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 35 com parâmetros: {'learning_rate': 0.0020963782849264157, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 35, Fold 1/4 ---
+✂️ Trial 35 podado no fold 1.
+[I 2026-01-25 01:49:21,438] Trial 35 pruned.
+
+--- Iniciando Trial 36 com parâmetros: {'learning_rate': 0.009780728883169481, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 36, Fold 1/4 ---
+
+--- Trial 36, Fold 2/4 ---
+
+--- Trial 36, Fold 3/4 ---
+
+--- Trial 36, Fold 4/4 ---
+🏁 Trial 36 concluído. Média das perdas de validação: 0.18950
+[I 2026-01-25 01:52:23,275] Trial 36 finished with value: 0.18949825037270784 and parameters: {'learning_rate': 0.009780728883169481, 'batch_size': 32, 'dropout_rate': 0.5}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 37 com parâmetros: {'learning_rate': 0.001317273872495613, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 37, Fold 1/4 ---
+
+--- Trial 37, Fold 2/4 ---
+
+--- Trial 37, Fold 3/4 ---
+
+--- Trial 37, Fold 4/4 ---
+🏁 Trial 37 concluído. Média das perdas de validação: 0.47235
+[I 2026-01-25 01:54:05,575] Trial 37 finished with value: 0.4723508497700095 and parameters: {'learning_rate': 0.001317273872495613, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 38 com parâmetros: {'learning_rate': 0.004727115791413441, 'batch_size': 128, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 38, Fold 1/4 ---
+✂️ Trial 38 podado no fold 1.
+[I 2026-01-25 01:54:31,834] Trial 38 pruned.
+
+--- Iniciando Trial 39 com parâmetros: {'learning_rate': 0.0004532387904765936, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 39, Fold 1/4 ---
+✂️ Trial 39 podado no fold 1.
+[I 2026-01-25 01:54:56,928] Trial 39 pruned.
+
+--- Iniciando Trial 40 com parâmetros: {'learning_rate': 0.010804743505512983, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 40, Fold 1/4 ---
+
+--- Trial 40, Fold 2/4 ---
+
+--- Trial 40, Fold 3/4 ---
+
+--- Trial 40, Fold 4/4 ---
+🏁 Trial 40 concluído. Média das perdas de validação: 0.17322
+[I 2026-01-25 01:58:57,314] Trial 40 finished with value: 0.1732172742486 and parameters: {'learning_rate': 0.010804743505512983, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 41 com parâmetros: {'learning_rate': 0.027995399679018273, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 41, Fold 1/4 ---
+✂️ Trial 41 podado no fold 1.
+[I 2026-01-25 01:59:37,975] Trial 41 pruned.
+
+--- Iniciando Trial 42 com parâmetros: {'learning_rate': 0.01129267482139865, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 42, Fold 1/4 ---
+✂️ Trial 42 podado no fold 1.
+[I 2026-01-25 02:00:13,080] Trial 42 pruned.
+
+--- Iniciando Trial 43 com parâmetros: {'learning_rate': 0.006091234521152199, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 43, Fold 1/4 ---
+✂️ Trial 43 podado no fold 1.
+[I 2026-01-25 02:00:39,869] Trial 43 pruned.
+
+--- Iniciando Trial 44 com parâmetros: {'learning_rate': 0.0036778205074438435, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 44, Fold 1/4 ---
+
+--- Trial 44, Fold 2/4 ---
+
+--- Trial 44, Fold 3/4 ---
+
+--- Trial 44, Fold 4/4 ---
+🏁 Trial 44 concluído. Média das perdas de validação: 0.20636
+[I 2026-01-25 02:02:30,581] Trial 44 finished with value: 0.20636102184653282 and parameters: {'learning_rate': 0.0036778205074438435, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 45 com parâmetros: {'learning_rate': 0.006485846211398137, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 45, Fold 1/4 ---
+✂️ Trial 45 podado no fold 1.
+[I 2026-01-25 02:03:12,351] Trial 45 pruned.
+
+--- Iniciando Trial 46 com parâmetros: {'learning_rate': 0.002343607951930975, 'batch_size': 128, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 46, Fold 1/4 ---
+✂️ Trial 46 podado no fold 1.
+[I 2026-01-25 02:03:36,050] Trial 46 pruned.
+
+--- Iniciando Trial 47 com parâmetros: {'learning_rate': 0.0013756514627203927, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 47, Fold 1/4 ---
+
+--- Trial 47, Fold 2/4 ---
+
+--- Trial 47, Fold 3/4 ---
+
+--- Trial 47, Fold 4/4 ---
+🏁 Trial 47 concluído. Média das perdas de validação: 0.21920
+[I 2026-01-25 02:05:48,107] Trial 47 finished with value: 0.21919654123485088 and parameters: {'learning_rate': 0.0013756514627203927, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 48 com parâmetros: {'learning_rate': 0.04190471754362242, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 48, Fold 1/4 ---
+✂️ Trial 48 podado no fold 1.
+[I 2026-01-25 02:06:48,584] Trial 48 pruned.
+
+--- Iniciando Trial 49 com parâmetros: {'learning_rate': 0.0009198174580667504, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 49, Fold 1/4 ---
+✂️ Trial 49 podado no fold 1.
+[I 2026-01-25 02:07:11,889] Trial 49 pruned.
+
+--- Iniciando Trial 50 com parâmetros: {'learning_rate': 0.004545435843521087, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 50, Fold 1/4 ---
+
+--- Trial 50, Fold 2/4 ---
+
+--- Trial 50, Fold 3/4 ---
+
+--- Trial 50, Fold 4/4 ---
+🏁 Trial 50 concluído. Média das perdas de validação: 0.19000
+[I 2026-01-25 02:09:17,047] Trial 50 finished with value: 0.18999767489731312 and parameters: {'learning_rate': 0.004545435843521087, 'batch_size': 32, 'dropout_rate': 0.5}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 51 com parâmetros: {'learning_rate': 0.002649654124435179, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 51, Fold 1/4 ---
+
+--- Trial 51, Fold 2/4 ---
+
+--- Trial 51, Fold 3/4 ---
+
+--- Trial 51, Fold 4/4 ---
+🏁 Trial 51 concluído. Média das perdas de validação: 0.24642
+[I 2026-01-25 02:11:07,831] Trial 51 finished with value: 0.24641623999923468 and parameters: {'learning_rate': 0.002649654124435179, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 52 com parâmetros: {'learning_rate': 0.001701422120295674, 'batch_size': 32, 'dropout_rate': 0.2} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 52, Fold 1/4 ---
+✂️ Trial 52 podado no fold 1.
+[I 2026-01-25 02:11:41,682] Trial 52 pruned.
+
+--- Iniciando Trial 53 com parâmetros: {'learning_rate': 0.003495903958710053, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 53, Fold 1/4 ---
+
+--- Trial 53, Fold 2/4 ---
+
+--- Trial 53, Fold 3/4 ---
+
+--- Trial 53, Fold 4/4 ---
+🏁 Trial 53 concluído. Média das perdas de validação: 0.19390
+[I 2026-01-25 02:13:33,927] Trial 53 finished with value: 0.19389792438596487 and parameters: {'learning_rate': 0.003495903958710053, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 54 com parâmetros: {'learning_rate': 0.0025853668777952184, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 54, Fold 1/4 ---
+
+--- Trial 54, Fold 2/4 ---
+
+--- Trial 54, Fold 3/4 ---
+
+--- Trial 54, Fold 4/4 ---
+🏁 Trial 54 concluído. Média das perdas de validação: 0.26668
+[I 2026-01-25 02:15:22,847] Trial 54 finished with value: 0.26668205112218857 and parameters: {'learning_rate': 0.0025853668777952184, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 55 com parâmetros: {'learning_rate': 0.004743590315609294, 'batch_size': 32, 'dropout_rate': 0.2} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 55, Fold 1/4 ---
+✂️ Trial 55 podado no fold 1.
+[I 2026-01-25 02:15:56,633] Trial 55 pruned.
+
+--- Iniciando Trial 56 com parâmetros: {'learning_rate': 0.011111865389876957, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 56, Fold 1/4 ---
+
+--- Trial 56, Fold 2/4 ---
+
+--- Trial 56, Fold 3/4 ---
+
+--- Trial 56, Fold 4/4 ---
+🏁 Trial 56 concluído. Média das perdas de validação: 0.19018
+[I 2026-01-25 02:18:47,190] Trial 56 finished with value: 0.19017934147268534 and parameters: {'learning_rate': 0.011111865389876957, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 57 com parâmetros: {'learning_rate': 0.022008074638635886, 'batch_size': 128, 'dropout_rate': 0.1} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 57, Fold 1/4 ---
+✂️ Trial 57 podado no fold 1.
+[I 2026-01-25 02:19:15,846] Trial 57 pruned.
+
+--- Iniciando Trial 58 com parâmetros: {'learning_rate': 0.0015631852710997526, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 58, Fold 1/4 ---
+
+--- Trial 58, Fold 2/4 ---
+
+--- Trial 58, Fold 3/4 ---
+
+--- Trial 58, Fold 4/4 ---
+🏁 Trial 58 concluído. Média das perdas de validação: 0.26588
+[I 2026-01-25 02:21:06,803] Trial 58 finished with value: 0.26588159147650003 and parameters: {'learning_rate': 0.0015631852710997526, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 59 com parâmetros: {'learning_rate': 0.000806019078845486, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 59, Fold 1/4 ---
+✂️ Trial 59 podado no fold 1.
+[I 2026-01-25 02:21:31,402] Trial 59 pruned.
+
+--- Iniciando Trial 60 com parâmetros: {'learning_rate': 0.0019513658989889907, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 60, Fold 1/4 ---
+
+--- Trial 60, Fold 2/4 ---
+
+--- Trial 60, Fold 3/4 ---
+
+--- Trial 60, Fold 4/4 ---
+🏁 Trial 60 concluído. Média das perdas de validação: 0.85614
+[I 2026-01-25 02:23:30,452] Trial 60 finished with value: 0.8561399877071381 and parameters: {'learning_rate': 0.0019513658989889907, 'batch_size': 64, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 61 com parâmetros: {'learning_rate': 0.003921678770013768, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 61, Fold 1/4 ---
+✂️ Trial 61 podado no fold 1.
+[I 2026-01-25 02:23:56,766] Trial 61 pruned.
+
+--- Iniciando Trial 62 com parâmetros: {'learning_rate': 0.0031166972702377518, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 62, Fold 1/4 ---
+✂️ Trial 62 podado no fold 1.
+[I 2026-01-25 02:24:25,711] Trial 62 pruned.
+
+--- Iniciando Trial 63 com parâmetros: {'learning_rate': 0.007237633592734434, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 63, Fold 1/4 ---
+✂️ Trial 63 podado no fold 1.
+[I 2026-01-25 02:25:06,553] Trial 63 pruned.
+
+--- Iniciando Trial 64 com parâmetros: {'learning_rate': 0.003087575818113642, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 64, Fold 1/4 ---
+
+--- Trial 64, Fold 2/4 ---
+
+--- Trial 64, Fold 3/4 ---
+
+--- Trial 64, Fold 4/4 ---
+🏁 Trial 64 concluído. Média das perdas de validação: 0.18214
+[I 2026-01-25 02:27:29,295] Trial 64 finished with value: 0.18214060366153717 and parameters: {'learning_rate': 0.003087575818113642, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 65 com parâmetros: {'learning_rate': 0.002271489257185761, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 65, Fold 1/4 ---
+
+--- Trial 65, Fold 2/4 ---
+
+--- Trial 65, Fold 3/4 ---
+
+--- Trial 65, Fold 4/4 ---
+🏁 Trial 65 concluído. Média das perdas de validação: 0.21454
+[I 2026-01-25 02:29:34,416] Trial 65 finished with value: 0.2145355250686407 and parameters: {'learning_rate': 0.002271489257185761, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 66 com parâmetros: {'learning_rate': 0.0011170442364931705, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 66, Fold 1/4 ---
+✂️ Trial 66 podado no fold 1.
+[I 2026-01-25 02:29:57,666] Trial 66 pruned.
+
+--- Iniciando Trial 67 com parâmetros: {'learning_rate': 0.0028445234347110357, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 67, Fold 1/4 ---
+
+--- Trial 67, Fold 2/4 ---
+
+--- Trial 67, Fold 3/4 ---
+
+--- Trial 67, Fold 4/4 ---
+🏁 Trial 67 concluído. Média das perdas de validação: 0.18757
+[I 2026-01-25 02:32:24,445] Trial 67 finished with value: 0.1875671222805977 and parameters: {'learning_rate': 0.0028445234347110357, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 68 com parâmetros: {'learning_rate': 0.005275240292750872, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 68, Fold 1/4 ---
+
+--- Trial 68, Fold 2/4 ---
+
+--- Trial 68, Fold 3/4 ---
+
+--- Trial 68, Fold 4/4 ---
+🏁 Trial 68 concluído. Média das perdas de validação: 0.19192
+[I 2026-01-25 02:34:42,081] Trial 68 finished with value: 0.19191860873252153 and parameters: {'learning_rate': 0.005275240292750872, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 69 com parâmetros: {'learning_rate': 0.0020209136579681817, 'batch_size': 128, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 69, Fold 1/4 ---
+✂️ Trial 69 podado no fold 1.
+[I 2026-01-25 02:35:05,760] Trial 69 pruned.
+
+--- Iniciando Trial 70 com parâmetros: {'learning_rate': 0.0014360189242293565, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 70, Fold 1/4 ---
+✂️ Trial 70 podado no fold 1.
+[I 2026-01-25 02:35:29,170] Trial 70 pruned.
+
+--- Iniciando Trial 71 com parâmetros: {'learning_rate': 0.0033910084741516724, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 71, Fold 1/4 ---
+
+--- Trial 71, Fold 2/4 ---
+
+--- Trial 71, Fold 3/4 ---
+
+--- Trial 71, Fold 4/4 ---
+🏁 Trial 71 concluído. Média das perdas de validação: 0.19485
+[I 2026-01-25 02:37:25,783] Trial 71 finished with value: 0.1948458654806018 and parameters: {'learning_rate': 0.0033910084741516724, 'batch_size': 32, 'dropout_rate': 0.30000000000000004}. Best is trial 22 with value: 0.16731084510684013.
+
+--- Iniciando Trial 72 com parâmetros: {'learning_rate': 0.008183838089714188, 'batch_size': 32, 'dropout_rate': 0.2} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 72, Fold 1/4 ---
+✂️ Trial 72 podado no fold 1.
+[I 2026-01-25 02:38:06,203] Trial 72 pruned.
+
+--- Iniciando Trial 73 com parâmetros: {'learning_rate': 0.0037938261854011464, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 73, Fold 1/4 ---
+✂️ Trial 73 podado no fold 1.
+[I 2026-01-25 02:38:34,695] Trial 73 pruned.
+
+--- Iniciando Trial 74 com parâmetros: {'learning_rate': 0.062367883636284184, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 74, Fold 1/4 ---
+✂️ Trial 74 podado no fold 1.
+[I 2026-01-25 02:39:39,373] Trial 74 pruned.
+
+--- Iniciando Trial 75 com parâmetros: {'learning_rate': 0.013701029402878965, 'batch_size': 32, 'dropout_rate': 0.2} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 75, Fold 1/4 ---
+✂️ Trial 75 podado no fold 1.
+[I 2026-01-25 02:40:06,929] Trial 75 pruned.
+
+--- Iniciando Trial 76 com parâmetros: {'learning_rate': 0.0023843877774043444, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 76, Fold 1/4 ---
+✂️ Trial 76 podado no fold 1.
+[I 2026-01-25 02:40:40,264] Trial 76 pruned.
+
+--- Iniciando Trial 77 com parâmetros: {'learning_rate': 0.005477164915712101, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 77, Fold 1/4 ---
+✂️ Trial 77 podado no fold 1.
+[I 2026-01-25 02:41:08,496] Trial 77 pruned.
+
+--- Iniciando Trial 78 com parâmetros: {'learning_rate': 0.003002680919431843, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 78, Fold 1/4 ---
+
+--- Trial 78, Fold 2/4 ---
+
+--- Trial 78, Fold 3/4 ---
+
+--- Trial 78, Fold 4/4 ---
+🏁 Trial 78 concluído. Média das perdas de validação: 0.16602
+[I 2026-01-25 02:43:51,679] Trial 78 finished with value: 0.16601709555834532 and parameters: {'learning_rate': 0.003002680919431843, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 79 com parâmetros: {'learning_rate': 0.00293063359968481, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 79, Fold 1/4 ---
+
+--- Trial 79, Fold 2/4 ---
+
+--- Trial 79, Fold 3/4 ---
+
+--- Trial 79, Fold 4/4 ---
+🏁 Trial 79 concluído. Média das perdas de validação: 0.18829
+[I 2026-01-25 02:46:02,853] Trial 79 finished with value: 0.18828845582902431 and parameters: {'learning_rate': 0.00293063359968481, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 80 com parâmetros: {'learning_rate': 0.0017215556044897532, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 80, Fold 1/4 ---
+✂️ Trial 80 podado no fold 1.
+[I 2026-01-25 02:46:26,193] Trial 80 pruned.
+
+--- Iniciando Trial 81 com parâmetros: {'learning_rate': 0.0020695246819008705, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 81, Fold 1/4 ---
+
+--- Trial 81, Fold 2/4 ---
+
+--- Trial 81, Fold 3/4 ---
+
+--- Trial 81, Fold 4/4 ---
+🏁 Trial 81 concluído. Média das perdas de validação: 0.18045
+[I 2026-01-25 02:48:45,616] Trial 81 finished with value: 0.18045439664274454 and parameters: {'learning_rate': 0.0020695246819008705, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 82 com parâmetros: {'learning_rate': 0.001243616943012665, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 82, Fold 1/4 ---
+
+--- Trial 82, Fold 2/4 ---
+
+--- Trial 82, Fold 3/4 ---
+
+--- Trial 82, Fold 4/4 ---
+🏁 Trial 82 concluído. Média das perdas de validação: 0.40265
+[I 2026-01-25 02:51:01,215] Trial 82 finished with value: 0.40264546405524015 and parameters: {'learning_rate': 0.001243616943012665, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 83 com parâmetros: {'learning_rate': 0.004109731031255762, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 83, Fold 1/4 ---
+
+--- Trial 83, Fold 2/4 ---
+
+--- Trial 83, Fold 3/4 ---
+
+--- Trial 83, Fold 4/4 ---
+🏁 Trial 83 concluído. Média das perdas de validação: 0.17750
+[I 2026-01-25 02:53:34,969] Trial 83 finished with value: 0.17750224098563194 and parameters: {'learning_rate': 0.004109731031255762, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 84 com parâmetros: {'learning_rate': 0.0009543057676351434, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 84, Fold 1/4 ---
+✂️ Trial 84 podado no fold 1.
+[I 2026-01-25 02:53:58,239] Trial 84 pruned.
+
+--- Iniciando Trial 85 com parâmetros: {'learning_rate': 0.002166471171666888, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 85, Fold 1/4 ---
+
+--- Trial 85, Fold 2/4 ---
+
+--- Trial 85, Fold 3/4 ---
+
+--- Trial 85, Fold 4/4 ---
+🏁 Trial 85 concluído. Média das perdas de validação: 0.18670
+[I 2026-01-25 02:56:05,902] Trial 85 finished with value: 0.18669961486011744 and parameters: {'learning_rate': 0.002166471171666888, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 86 com parâmetros: {'learning_rate': 0.0042972205563127416, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 86, Fold 1/4 ---
+✂️ Trial 86 podado no fold 1.
+[I 2026-01-25 02:56:38,228] Trial 86 pruned.
+
+--- Iniciando Trial 87 com parâmetros: {'learning_rate': 0.0017742524846053277, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 87, Fold 1/4 ---
+✂️ Trial 87 podado no fold 1.
+[I 2026-01-25 02:57:13,679] Trial 87 pruned.
+
+--- Iniciando Trial 88 com parâmetros: {'learning_rate': 0.0006934651009219006, 'batch_size': 64, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 88, Fold 1/4 ---
+✂️ Trial 88 podado no fold 1.
+[I 2026-01-25 02:57:37,068] Trial 88 pruned.
+
+--- Iniciando Trial 89 com parâmetros: {'learning_rate': 0.0024900930913269153, 'batch_size': 128, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 89, Fold 1/4 ---
+✂️ Trial 89 podado no fold 1.
+[I 2026-01-25 02:58:00,706] Trial 89 pruned.
+
+--- Iniciando Trial 90 com parâmetros: {'learning_rate': 0.006460244257369133, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 90, Fold 1/4 ---
+
+--- Trial 90, Fold 2/4 ---
+
+--- Trial 90, Fold 3/4 ---
+
+--- Trial 90, Fold 4/4 ---
+🏁 Trial 90 concluído. Média das perdas de validação: 0.18228
+[I 2026-01-25 03:00:50,185] Trial 90 finished with value: 0.1822768896818161 and parameters: {'learning_rate': 0.006460244257369133, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 91 com parâmetros: {'learning_rate': 0.009945045099806957, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 91, Fold 1/4 ---
+
+--- Trial 91, Fold 2/4 ---
+
+--- Trial 91, Fold 3/4 ---
+
+--- Trial 91, Fold 4/4 ---
+🏁 Trial 91 concluído. Média das perdas de validação: 0.18537
+[I 2026-01-25 03:03:48,781] Trial 91 finished with value: 0.18537164572626352 and parameters: {'learning_rate': 0.009945045099806957, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 92 com parâmetros: {'learning_rate': 0.0073128117479338535, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 92, Fold 1/4 ---
+✂️ Trial 92 podado no fold 1.
+[I 2026-01-25 03:04:16,855] Trial 92 pruned.
+
+--- Iniciando Trial 93 com parâmetros: {'learning_rate': 0.00556299755036525, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 93, Fold 1/4 ---
+✂️ Trial 93 podado no fold 1.
+[I 2026-01-25 03:04:58,414] Trial 93 pruned.
+
+--- Iniciando Trial 94 com parâmetros: {'learning_rate': 0.003237761090060618, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 94, Fold 1/4 ---
+✂️ Trial 94 podado no fold 1.
+[I 2026-01-25 03:05:26,602] Trial 94 pruned.
+
+--- Iniciando Trial 95 com parâmetros: {'learning_rate': 0.004254029561219362, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 95, Fold 1/4 ---
+
+--- Trial 95, Fold 2/4 ---
+
+--- Trial 95, Fold 3/4 ---
+
+--- Trial 95, Fold 4/4 ---
+🏁 Trial 95 concluído. Média das perdas de validação: 0.18434
+[I 2026-01-25 03:07:49,424] Trial 95 finished with value: 0.18433841411024332 and parameters: {'learning_rate': 0.004254029561219362, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 96 com parâmetros: {'learning_rate': 0.006520807892850725, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 96, Fold 1/4 ---
+✂️ Trial 96 podado no fold 1.
+[I 2026-01-25 03:08:27,241] Trial 96 pruned.
+
+--- Iniciando Trial 97 com parâmetros: {'learning_rate': 0.0049138891997436256, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 97, Fold 1/4 ---
+✂️ Trial 97 podado no fold 1.
+[I 2026-01-25 03:08:58,431] Trial 97 pruned.
+
+--- Iniciando Trial 98 com parâmetros: {'learning_rate': 0.002794783259924686, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 98, Fold 1/4 ---
+✂️ Trial 98 podado no fold 1.
+[I 2026-01-25 03:09:33,136] Trial 98 pruned.
+
+--- Iniciando Trial 99 com parâmetros: {'learning_rate': 0.0014643927567862987, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 99, Fold 1/4 ---
+✂️ Trial 99 podado no fold 1.
+[I 2026-01-25 03:09:56,513] Trial 99 pruned.
+
+--- Iniciando Trial 100 com parâmetros: {'learning_rate': 0.012431528363470938, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 100, Fold 1/4 ---
+
+--- Trial 100, Fold 2/4 ---
+
+--- Trial 100, Fold 3/4 ---
+
+--- Trial 100, Fold 4/4 ---
+🏁 Trial 100 concluído. Média das perdas de validação: 0.18358
+[I 2026-01-25 03:13:28,263] Trial 100 finished with value: 0.1835752222687006 and parameters: {'learning_rate': 0.012431528363470938, 'batch_size': 32, 'dropout_rate': 0.5}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 101 com parâmetros: {'learning_rate': 0.0037651651947672245, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 101, Fold 1/4 ---
+
+--- Trial 101, Fold 2/4 ---
+
+--- Trial 101, Fold 3/4 ---
+
+--- Trial 101, Fold 4/4 ---
+🏁 Trial 101 concluído. Média das perdas de validação: 0.19219
+[I 2026-01-25 03:15:45,491] Trial 101 finished with value: 0.192189022898674 and parameters: {'learning_rate': 0.0037651651947672245, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 102 com parâmetros: {'learning_rate': 0.001909999572447591, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 102, Fold 1/4 ---
+
+--- Trial 102, Fold 2/4 ---
+
+--- Trial 102, Fold 3/4 ---
+
+--- Trial 102, Fold 4/4 ---
+🏁 Trial 102 concluído. Média das perdas de validação: 0.18514
+[I 2026-01-25 03:17:48,304] Trial 102 finished with value: 0.18513765837997198 and parameters: {'learning_rate': 0.001909999572447591, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 103 com parâmetros: {'learning_rate': 0.002286292120284323, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 103, Fold 1/4 ---
+
+--- Trial 103, Fold 2/4 ---
+
+--- Trial 103, Fold 3/4 ---
+
+--- Trial 103, Fold 4/4 ---
+🏁 Trial 103 concluído. Média das perdas de validação: 0.25435
+[I 2026-01-25 03:20:34,068] Trial 103 finished with value: 0.2543469723314047 and parameters: {'learning_rate': 0.002286292120284323, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 104 com parâmetros: {'learning_rate': 0.008926846755791867, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 104, Fold 1/4 ---
+✂️ Trial 104 podado no fold 1.
+[I 2026-01-25 03:21:03,486] Trial 104 pruned.
+
+--- Iniciando Trial 105 com parâmetros: {'learning_rate': 0.0032529858580190242, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 105, Fold 1/4 ---
+
+--- Trial 105, Fold 2/4 ---
+
+--- Trial 105, Fold 3/4 ---
+
+--- Trial 105, Fold 4/4 ---
+🏁 Trial 105 concluído. Média das perdas de validação: 0.16783
+[I 2026-01-25 03:24:22,828] Trial 105 finished with value: 0.16783380694687366 and parameters: {'learning_rate': 0.0032529858580190242, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 106 com parâmetros: {'learning_rate': 0.018318836678775326, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 106, Fold 1/4 ---
+✂️ Trial 106 podado no fold 1.
+[I 2026-01-25 03:25:12,806] Trial 106 pruned.
+
+--- Iniciando Trial 107 com parâmetros: {'learning_rate': 0.0030241475935690438, 'batch_size': 128, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 107, Fold 1/4 ---
+✂️ Trial 107 podado no fold 1.
+[I 2026-01-25 03:25:36,500] Trial 107 pruned.
+
+--- Iniciando Trial 108 com parâmetros: {'learning_rate': 0.0016311480033527473, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 108, Fold 1/4 ---
+✂️ Trial 108 podado no fold 1.
+[I 2026-01-25 03:25:59,838] Trial 108 pruned.
+
+--- Iniciando Trial 109 com parâmetros: {'learning_rate': 0.006266920165964021, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 109, Fold 1/4 ---
+✂️ Trial 109 podado no fold 1.
+[I 2026-01-25 03:26:33,790] Trial 109 pruned.
+
+--- Iniciando Trial 110 com parâmetros: {'learning_rate': 0.004092027769258997, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 110, Fold 1/4 ---
+✂️ Trial 110 podado no fold 1.
+[I 2026-01-25 03:27:27,715] Trial 110 pruned.
+
+--- Iniciando Trial 111 com parâmetros: {'learning_rate': 0.0025715387231567285, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 111, Fold 1/4 ---
+✂️ Trial 111 podado no fold 1.
+[I 2026-01-25 03:27:58,771] Trial 111 pruned.
+
+--- Iniciando Trial 112 com parâmetros: {'learning_rate': 0.001950878761672977, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 112, Fold 1/4 ---
+
+--- Trial 112, Fold 2/4 ---
+
+--- Trial 112, Fold 3/4 ---
+
+--- Trial 112, Fold 4/4 ---
+🏁 Trial 112 concluído. Média das perdas de validação: 0.18132
+[I 2026-01-25 03:30:16,168] Trial 112 finished with value: 0.18132006749510765 and parameters: {'learning_rate': 0.001950878761672977, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 113 com parâmetros: {'learning_rate': 0.002113001039248991, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 113, Fold 1/4 ---
+✂️ Trial 113 podado no fold 1.
+[I 2026-01-25 03:30:43,323] Trial 113 pruned.
+
+--- Iniciando Trial 114 com parâmetros: {'learning_rate': 0.003446021460137714, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 114, Fold 1/4 ---
+✂️ Trial 114 podado no fold 1.
+[I 2026-01-25 03:31:22,909] Trial 114 pruned.
+
+--- Iniciando Trial 115 com parâmetros: {'learning_rate': 0.002614311001526782, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 115, Fold 1/4 ---
+✂️ Trial 115 podado no fold 1.
+[I 2026-01-25 03:31:53,669] Trial 115 pruned.
+
+--- Iniciando Trial 116 com parâmetros: {'learning_rate': 0.0032098118840339644, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 116, Fold 1/4 ---
+✂️ Trial 116 podado no fold 1.
+[I 2026-01-25 03:32:25,316] Trial 116 pruned.
+
+--- Iniciando Trial 117 com parâmetros: {'learning_rate': 0.0019314441977886418, 'batch_size': 32, 'dropout_rate': 0.1} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 117, Fold 1/4 ---
+
+--- Trial 117, Fold 2/4 ---
+
+--- Trial 117, Fold 3/4 ---
+
+--- Trial 117, Fold 4/4 ---
+🏁 Trial 117 concluído. Média das perdas de validação: 0.36665
+[I 2026-01-25 03:34:04,573] Trial 117 finished with value: 0.3666545506566763 and parameters: {'learning_rate': 0.0019314441977886418, 'batch_size': 32, 'dropout_rate': 0.1}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 118 com parâmetros: {'learning_rate': 0.004813363715505364, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 118, Fold 1/4 ---
+✂️ Trial 118 podado no fold 1.
+[I 2026-01-25 03:34:49,774] Trial 118 pruned.
+
+--- Iniciando Trial 119 com parâmetros: {'learning_rate': 0.00013595252930130952, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 119, Fold 1/4 ---
+✂️ Trial 119 podado no fold 1.
+[I 2026-01-25 03:35:20,280] Trial 119 pruned.
+
+--- Iniciando Trial 120 com parâmetros: {'learning_rate': 0.0011930350178703745, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 120, Fold 1/4 ---
+✂️ Trial 120 podado no fold 1.
+[I 2026-01-25 03:35:43,533] Trial 120 pruned.
+
+--- Iniciando Trial 121 com parâmetros: {'learning_rate': 0.002899197449421819, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 121, Fold 1/4 ---
+✂️ Trial 121 podado no fold 1.
+[I 2026-01-25 03:36:10,738] Trial 121 pruned.
+
+--- Iniciando Trial 122 com parâmetros: {'learning_rate': 0.0022103383470484226, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 122, Fold 1/4 ---
+✂️ Trial 122 podado no fold 1.
+[I 2026-01-25 03:36:49,438] Trial 122 pruned.
+
+--- Iniciando Trial 123 com parâmetros: {'learning_rate': 0.0015170209995677682, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 123, Fold 1/4 ---
+
+--- Trial 123, Fold 2/4 ---
+
+--- Trial 123, Fold 3/4 ---
+
+--- Trial 123, Fold 4/4 ---
+🏁 Trial 123 concluído. Média das perdas de validação: 0.18536
+[I 2026-01-25 03:39:22,925] Trial 123 finished with value: 0.18536045122891665 and parameters: {'learning_rate': 0.0015170209995677682, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 124 com parâmetros: {'learning_rate': 0.0037531790792477773, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 124, Fold 1/4 ---
+✂️ Trial 124 podado no fold 1.
+[I 2026-01-25 03:39:47,983] Trial 124 pruned.
+
+--- Iniciando Trial 125 com parâmetros: {'learning_rate': 0.0017727883810013934, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 125, Fold 1/4 ---
+
+--- Trial 125, Fold 2/4 ---
+
+--- Trial 125, Fold 3/4 ---
+
+--- Trial 125, Fold 4/4 ---
+🏁 Trial 125 concluído. Média das perdas de validação: 0.18296
+[I 2026-01-25 03:41:57,358] Trial 125 finished with value: 0.18295908067375422 and parameters: {'learning_rate': 0.0017727883810013934, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 126 com parâmetros: {'learning_rate': 0.0017838652121908523, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 126, Fold 1/4 ---
+✂️ Trial 126 podado no fold 1.
+[I 2026-01-25 03:42:35,561] Trial 126 pruned.
+
+--- Iniciando Trial 127 com parâmetros: {'learning_rate': 0.0009984584997020987, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 127, Fold 1/4 ---
+✂️ Trial 127 podado no fold 1.
+[I 2026-01-25 03:42:58,808] Trial 127 pruned.
+
+--- Iniciando Trial 128 com parâmetros: {'learning_rate': 0.00140087446978861, 'batch_size': 128, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 128, Fold 1/4 ---
+✂️ Trial 128 podado no fold 1.
+[I 2026-01-25 03:43:22,378] Trial 128 pruned.
+
+--- Iniciando Trial 129 com parâmetros: {'learning_rate': 0.002406200860285317, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 129, Fold 1/4 ---
+✂️ Trial 129 podado no fold 1.
+[I 2026-01-25 03:43:50,009] Trial 129 pruned.
+
+--- Iniciando Trial 130 com parâmetros: {'learning_rate': 0.022223482685651514, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 130, Fold 1/4 ---
+✂️ Trial 130 podado no fold 1.
+[I 2026-01-25 03:44:22,168] Trial 130 pruned.
+
+--- Iniciando Trial 131 com parâmetros: {'learning_rate': 0.00282780790228831, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 131, Fold 1/4 ---
+✂️ Trial 131 podado no fold 1.
+[I 2026-01-25 03:44:59,904] Trial 131 pruned.
+
+--- Iniciando Trial 132 com parâmetros: {'learning_rate': 0.0033731239145353663, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 132, Fold 1/4 ---
+✂️ Trial 132 podado no fold 1.
+[I 2026-01-25 03:45:42,595] Trial 132 pruned.
+
+--- Iniciando Trial 133 com parâmetros: {'learning_rate': 0.0019841614003127967, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 133, Fold 1/4 ---
+✂️ Trial 133 podado no fold 1.
+[I 2026-01-25 03:46:17,743] Trial 133 pruned.
+
+--- Iniciando Trial 134 com parâmetros: {'learning_rate': 0.004245397899909201, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 134, Fold 1/4 ---
+✂️ Trial 134 podado no fold 1.
+[I 2026-01-25 03:46:46,787] Trial 134 pruned.
+
+--- Iniciando Trial 135 com parâmetros: {'learning_rate': 0.00169388027986642, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 135, Fold 1/4 ---
+✂️ Trial 135 podado no fold 1.
+[I 2026-01-25 03:47:10,058] Trial 135 pruned.
+
+--- Iniciando Trial 136 com parâmetros: {'learning_rate': 0.002476105721738696, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 136, Fold 1/4 ---
+✂️ Trial 136 podado no fold 1.
+[I 2026-01-25 03:47:35,663] Trial 136 pruned.
+
+--- Iniciando Trial 137 com parâmetros: {'learning_rate': 0.002201170595825187, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 137, Fold 1/4 ---
+✂️ Trial 137 podado no fold 1.
+[I 2026-01-25 03:48:11,288] Trial 137 pruned.
+
+--- Iniciando Trial 138 com parâmetros: {'learning_rate': 0.0035606325341762386, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 138, Fold 1/4 ---
+✂️ Trial 138 podado no fold 1.
+[I 2026-01-25 03:48:52,144] Trial 138 pruned.
+
+--- Iniciando Trial 139 com parâmetros: {'learning_rate': 0.0013219159721125403, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 139, Fold 1/4 ---
+
+--- Trial 139, Fold 2/4 ---
+
+--- Trial 139, Fold 3/4 ---
+
+--- Trial 139, Fold 4/4 ---
+🏁 Trial 139 concluído. Média das perdas de validação: 0.21499
+[I 2026-01-25 03:51:30,551] Trial 139 finished with value: 0.21498789079487324 and parameters: {'learning_rate': 0.0013219159721125403, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 140 com parâmetros: {'learning_rate': 0.0029422064131935984, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 140, Fold 1/4 ---
+✂️ Trial 140 podado no fold 1.
+[I 2026-01-25 03:52:01,625] Trial 140 pruned.
+
+--- Iniciando Trial 141 com parâmetros: {'learning_rate': 0.013809050095718181, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 141, Fold 1/4 ---
+
+--- Trial 141, Fold 2/4 ---
+
+--- Trial 141, Fold 3/4 ---
+
+--- Trial 141, Fold 4/4 ---
+🏁 Trial 141 concluído. Média das perdas de validação: 0.17058
+[I 2026-01-25 03:56:47,846] Trial 141 finished with value: 0.17057762015610933 and parameters: {'learning_rate': 0.013809050095718181, 'batch_size': 32, 'dropout_rate': 0.5}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 142 com parâmetros: {'learning_rate': 0.010479101922263371, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 142, Fold 1/4 ---
+✂️ Trial 142 podado no fold 1.
+[I 2026-01-25 03:57:22,160] Trial 142 pruned.
+
+--- Iniciando Trial 143 com parâmetros: {'learning_rate': 0.014501431775063635, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 143, Fold 1/4 ---
+✂️ Trial 143 podado no fold 1.
+[I 2026-01-25 03:57:51,164] Trial 143 pruned.
+
+--- Iniciando Trial 144 com parâmetros: {'learning_rate': 0.016419632874912066, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 144, Fold 1/4 ---
+✂️ Trial 144 podado no fold 1.
+[I 2026-01-25 03:58:34,594] Trial 144 pruned.
+
+--- Iniciando Trial 145 com parâmetros: {'learning_rate': 0.007734159992506841, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 145, Fold 1/4 ---
+✂️ Trial 145 podado no fold 1.
+[I 2026-01-25 03:59:12,759] Trial 145 pruned.
+
+--- Iniciando Trial 146 com parâmetros: {'learning_rate': 0.0026027968956340575, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 146, Fold 1/4 ---
+
+--- Trial 146, Fold 2/4 ---
+
+--- Trial 146, Fold 3/4 ---
+
+--- Trial 146, Fold 4/4 ---
+🏁 Trial 146 concluído. Média das perdas de validação: 0.26865
+[I 2026-01-25 04:01:23,267] Trial 146 finished with value: 0.26865354645997286 and parameters: {'learning_rate': 0.0026027968956340575, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 147 com parâmetros: {'learning_rate': 0.01279385467456037, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 147, Fold 1/4 ---
+✂️ Trial 147 podado no fold 1.
+[I 2026-01-25 04:01:58,093] Trial 147 pruned.
+
+--- Iniciando Trial 148 com parâmetros: {'learning_rate': 0.021266431309716404, 'batch_size': 32, 'dropout_rate': 0.2} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 148, Fold 1/4 ---
+✂️ Trial 148 podado no fold 1.
+[I 2026-01-25 04:02:29,727] Trial 148 pruned.
+
+--- Iniciando Trial 149 com parâmetros: {'learning_rate': 0.005486825979062833, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 149, Fold 1/4 ---
+✂️ Trial 149 podado no fold 1.
+[I 2026-01-25 04:02:59,194] Trial 149 pruned.
+
+--- Iniciando Trial 150 com parâmetros: {'learning_rate': 0.0020036453843319483, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 150, Fold 1/4 ---
+
+--- Trial 150, Fold 2/4 ---
+
+--- Trial 150, Fold 3/4 ---
+
+--- Trial 150, Fold 4/4 ---
+🏁 Trial 150 concluído. Média das perdas de validação: 0.18389
+[I 2026-01-25 04:05:09,378] Trial 150 finished with value: 0.18389322701841593 and parameters: {'learning_rate': 0.0020036453843319483, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 151 com parâmetros: {'learning_rate': 0.00913164651009544, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 151, Fold 1/4 ---
+✂️ Trial 151 podado no fold 1.
+[I 2026-01-25 04:05:57,274] Trial 151 pruned.
+
+--- Iniciando Trial 152 com parâmetros: {'learning_rate': 0.012426492566616688, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 152, Fold 1/4 ---
+
+--- Trial 152, Fold 2/4 ---
+
+--- Trial 152, Fold 3/4 ---
+
+--- Trial 152, Fold 4/4 ---
+🏁 Trial 152 concluído. Média das perdas de validação: 0.17857
+[I 2026-01-25 04:09:50,534] Trial 152 finished with value: 0.17856658063828945 and parameters: {'learning_rate': 0.012426492566616688, 'batch_size': 32, 'dropout_rate': 0.5}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 153 com parâmetros: {'learning_rate': 0.0030664099904726965, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 153, Fold 1/4 ---
+✂️ Trial 153 podado no fold 1.
+[I 2026-01-25 04:10:25,288] Trial 153 pruned.
+
+--- Iniciando Trial 154 com parâmetros: {'learning_rate': 0.015560992877059487, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 154, Fold 1/4 ---
+✂️ Trial 154 podado no fold 1.
+[I 2026-01-25 04:11:00,031] Trial 154 pruned.
+
+--- Iniciando Trial 155 com parâmetros: {'learning_rate': 0.010965968238946095, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 155, Fold 1/4 ---
+✂️ Trial 155 podado no fold 1.
+[I 2026-01-25 04:12:04,053] Trial 155 pruned.
+
+--- Iniciando Trial 156 com parâmetros: {'learning_rate': 0.012451296703399633, 'batch_size': 128, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 156, Fold 1/4 ---
+✂️ Trial 156 podado no fold 1.
+[I 2026-01-25 04:12:43,329] Trial 156 pruned.
+
+--- Iniciando Trial 157 com parâmetros: {'learning_rate': 0.001552823727350987, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 157, Fold 1/4 ---
+
+--- Trial 157, Fold 2/4 ---
+
+--- Trial 157, Fold 3/4 ---
+
+--- Trial 157, Fold 4/4 ---
+🏁 Trial 157 concluído. Média das perdas de validação: 0.45734
+[I 2026-01-25 04:14:40,098] Trial 157 finished with value: 0.4573449604213238 and parameters: {'learning_rate': 0.001552823727350987, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 158 com parâmetros: {'learning_rate': 0.0021717580042110987, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 158, Fold 1/4 ---
+
+--- Trial 158, Fold 2/4 ---
+
+--- Trial 158, Fold 3/4 ---
+
+--- Trial 158, Fold 4/4 ---
+🏁 Trial 158 concluído. Média das perdas de validação: 0.18414
+[I 2026-01-25 04:16:53,313] Trial 158 finished with value: 0.18414385337382555 and parameters: {'learning_rate': 0.0021717580042110987, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 159 com parâmetros: {'learning_rate': 0.003921194084269016, 'batch_size': 64, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 159, Fold 1/4 ---
+✂️ Trial 159 podado no fold 1.
+[I 2026-01-25 04:17:20,648] Trial 159 pruned.
+
+--- Iniciando Trial 160 com parâmetros: {'learning_rate': 0.0024566292927687672, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 160, Fold 1/4 ---
+
+--- Trial 160, Fold 2/4 ---
+
+--- Trial 160, Fold 3/4 ---
+
+--- Trial 160, Fold 4/4 ---
+🏁 Trial 160 concluído. Média das perdas de validação: 0.17678
+[I 2026-01-25 04:19:39,075] Trial 160 finished with value: 0.17678482457995415 and parameters: {'learning_rate': 0.0024566292927687672, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 161 com parâmetros: {'learning_rate': 0.0024029124578601574, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 161, Fold 1/4 ---
+✂️ Trial 161 podado no fold 1.
+[I 2026-01-25 04:20:17,309] Trial 161 pruned.
+
+--- Iniciando Trial 162 com parâmetros: {'learning_rate': 0.0017961108008277982, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 162, Fold 1/4 ---
+
+--- Trial 162, Fold 2/4 ---
+
+--- Trial 162, Fold 3/4 ---
+
+--- Trial 162, Fold 4/4 ---
+🏁 Trial 162 concluído. Média das perdas de validação: 0.27571
+[I 2026-01-25 04:23:02,731] Trial 162 finished with value: 0.275714373216033 and parameters: {'learning_rate': 0.0017961108008277982, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 163 com parâmetros: {'learning_rate': 0.0032318059921147683, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 163, Fold 1/4 ---
+
+--- Trial 163, Fold 2/4 ---
+
+--- Trial 163, Fold 3/4 ---
+
+--- Trial 163, Fold 4/4 ---
+🏁 Trial 163 concluído. Média das perdas de validação: 0.18621
+[I 2026-01-25 04:25:22,988] Trial 163 finished with value: 0.18620564509183168 and parameters: {'learning_rate': 0.0032318059921147683, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 164 com parâmetros: {'learning_rate': 0.0026879289662641343, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 164, Fold 1/4 ---
+
+--- Trial 164, Fold 2/4 ---
+
+--- Trial 164, Fold 3/4 ---
+
+--- Trial 164, Fold 4/4 ---
+🏁 Trial 164 concluído. Média das perdas de validação: 0.20207
+[I 2026-01-25 04:27:40,644] Trial 164 finished with value: 0.2020653961226344 and parameters: {'learning_rate': 0.0026879289662641343, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 165 com parâmetros: {'learning_rate': 0.02683746878254418, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 165, Fold 1/4 ---
+✂️ Trial 165 podado no fold 1.
+[I 2026-01-25 04:28:35,026] Trial 165 pruned.
+
+--- Iniciando Trial 166 com parâmetros: {'learning_rate': 0.0020603943729006757, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 166, Fold 1/4 ---
+✂️ Trial 166 podado no fold 1.
+[I 2026-01-25 04:29:04,012] Trial 166 pruned.
+
+--- Iniciando Trial 167 com parâmetros: {'learning_rate': 0.0027626730094373977, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 167, Fold 1/4 ---
+✂️ Trial 167 podado no fold 1.
+[I 2026-01-25 04:29:41,874] Trial 167 pruned.
+
+--- Iniciando Trial 168 com parâmetros: {'learning_rate': 0.006610953356870045, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 168, Fold 1/4 ---
+✂️ Trial 168 podado no fold 1.
+[I 2026-01-25 04:30:17,866] Trial 168 pruned.
+
+--- Iniciando Trial 169 com parâmetros: {'learning_rate': 0.004771733001265249, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 169, Fold 1/4 ---
+✂️ Trial 169 podado no fold 1.
+[I 2026-01-25 04:30:57,956] Trial 169 pruned.
+
+--- Iniciando Trial 170 com parâmetros: {'learning_rate': 0.0034977079814090327, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 170, Fold 1/4 ---
+✂️ Trial 170 podado no fold 1.
+[I 2026-01-25 04:31:47,508] Trial 170 pruned.
+
+--- Iniciando Trial 171 com parâmetros: {'learning_rate': 0.013234075440336628, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 171, Fold 1/4 ---
+✂️ Trial 171 podado no fold 1.
+[I 2026-01-25 04:32:40,811] Trial 171 pruned.
+
+--- Iniciando Trial 172 com parâmetros: {'learning_rate': 0.012076491824831443, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 172, Fold 1/4 ---
+✂️ Trial 172 podado no fold 1.
+[I 2026-01-25 04:33:16,393] Trial 172 pruned.
+
+--- Iniciando Trial 173 com parâmetros: {'learning_rate': 0.009947911273203349, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 173, Fold 1/4 ---
+✂️ Trial 173 podado no fold 1.
+[I 2026-01-25 04:34:14,910] Trial 173 pruned.
+
+--- Iniciando Trial 174 com parâmetros: {'learning_rate': 0.016623227873886474, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 174, Fold 1/4 ---
+
+--- Trial 174, Fold 2/4 ---
+
+--- Trial 174, Fold 3/4 ---
+
+--- Trial 174, Fold 4/4 ---
+🏁 Trial 174 concluído. Média das perdas de validação: 0.19115
+[I 2026-01-25 04:37:39,108] Trial 174 finished with value: 0.19115234911441803 and parameters: {'learning_rate': 0.016623227873886474, 'batch_size': 32, 'dropout_rate': 0.5}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 175 com parâmetros: {'learning_rate': 0.002342794370264541, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 175, Fold 1/4 ---
+✂️ Trial 175 podado no fold 1.
+[I 2026-01-25 04:38:28,660] Trial 175 pruned.
+
+--- Iniciando Trial 176 com parâmetros: {'learning_rate': 0.018544660871862614, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 176, Fold 1/4 ---
+✂️ Trial 176 podado no fold 1.
+[I 2026-01-25 04:39:27,325] Trial 176 pruned.
+
+--- Iniciando Trial 177 com parâmetros: {'learning_rate': 0.0018160149587372113, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 177, Fold 1/4 ---
+
+--- Trial 177, Fold 2/4 ---
+
+--- Trial 177, Fold 3/4 ---
+
+--- Trial 177, Fold 4/4 ---
+🏁 Trial 177 concluído. Média das perdas de validação: 0.39941
+[I 2026-01-25 04:42:08,561] Trial 177 finished with value: 0.3994116997346282 and parameters: {'learning_rate': 0.0018160149587372113, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 178 com parâmetros: {'learning_rate': 0.003146371159108853, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 178, Fold 1/4 ---
+✂️ Trial 178 podado no fold 1.
+[I 2026-01-25 04:42:36,708] Trial 178 pruned.
+
+--- Iniciando Trial 179 com parâmetros: {'learning_rate': 0.002479052563995853, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 179, Fold 1/4 ---
+✂️ Trial 179 podado no fold 1.
+[I 2026-01-25 04:43:12,731] Trial 179 pruned.
+
+--- Iniciando Trial 180 com parâmetros: {'learning_rate': 0.01410664137258537, 'batch_size': 32, 'dropout_rate': 0.30000000000000004} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 180, Fold 1/4 ---
+✂️ Trial 180 podado no fold 1.
+[I 2026-01-25 04:43:52,350] Trial 180 pruned.
+
+--- Iniciando Trial 181 com parâmetros: {'learning_rate': 0.0020029825015792273, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 181, Fold 1/4 ---
+
+--- Trial 181, Fold 2/4 ---
+
+--- Trial 181, Fold 3/4 ---
+
+--- Trial 181, Fold 4/4 ---
+🏁 Trial 181 concluído. Média das perdas de validação: 0.40415
+[I 2026-01-25 04:45:55,936] Trial 181 finished with value: 0.4041518000885844 and parameters: {'learning_rate': 0.0020029825015792273, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 182 com parâmetros: {'learning_rate': 0.001631514883785475, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 182, Fold 1/4 ---
+✂️ Trial 182 podado no fold 1.
+[I 2026-01-25 04:46:44,750] Trial 182 pruned.
+
+--- Iniciando Trial 183 com parâmetros: {'learning_rate': 0.0020071135246679606, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 183, Fold 1/4 ---
+✂️ Trial 183 podado no fold 1.
+[I 2026-01-25 04:47:39,379] Trial 183 pruned.
+
+--- Iniciando Trial 184 com parâmetros: {'learning_rate': 0.0002796684191857151, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 184, Fold 1/4 ---
+✂️ Trial 184 podado no fold 1.
+[I 2026-01-25 04:48:03,166] Trial 184 pruned.
+
+--- Iniciando Trial 185 com parâmetros: {'learning_rate': 0.0026978415056365447, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 185, Fold 1/4 ---
+✂️ Trial 185 podado no fold 1.
+[I 2026-01-25 04:48:34,250] Trial 185 pruned.
+
+--- Iniciando Trial 186 com parâmetros: {'learning_rate': 0.008547060451669933, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 186, Fold 1/4 ---
+✂️ Trial 186 podado no fold 1.
+[I 2026-01-25 04:49:13,375] Trial 186 pruned.
+
+--- Iniciando Trial 187 com parâmetros: {'learning_rate': 0.0022468678632964925, 'batch_size': 128, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 187, Fold 1/4 ---
+✂️ Trial 187 podado no fold 1.
+[I 2026-01-25 04:49:37,062] Trial 187 pruned.
+
+--- Iniciando Trial 188 com parâmetros: {'learning_rate': 0.0037672291967585964, 'batch_size': 32, 'dropout_rate': 0.5} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 188, Fold 1/4 ---
+
+--- Trial 188, Fold 2/4 ---
+
+--- Trial 188, Fold 3/4 ---
+
+--- Trial 188, Fold 4/4 ---
+🏁 Trial 188 concluído. Média das perdas de validação: 0.18972
+[I 2026-01-25 04:52:00,376] Trial 188 finished with value: 0.1897199396044016 and parameters: {'learning_rate': 0.0037672291967585964, 'batch_size': 32, 'dropout_rate': 0.5}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 189 com parâmetros: {'learning_rate': 0.011593679044383845, 'batch_size': 64, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 189, Fold 1/4 ---
+✂️ Trial 189 podado no fold 1.
+[I 2026-01-25 04:52:44,900] Trial 189 pruned.
+
+--- Iniciando Trial 190 com parâmetros: {'learning_rate': 0.0018039125622105517, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 190, Fold 1/4 ---
+✂️ Trial 190 podado no fold 1.
+[I 2026-01-25 04:53:11,261] Trial 190 pruned.
+
+--- Iniciando Trial 191 com parâmetros: {'learning_rate': 0.00215039904926323, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 191, Fold 1/4 ---
+✂️ Trial 191 podado no fold 1.
+[I 2026-01-25 04:53:48,118] Trial 191 pruned.
+
+--- Iniciando Trial 192 com parâmetros: {'learning_rate': 0.002946690036862656, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 192, Fold 1/4 ---
+✂️ Trial 192 podado no fold 1.
+[I 2026-01-25 04:54:19,758] Trial 192 pruned.
+
+--- Iniciando Trial 193 com parâmetros: {'learning_rate': 0.0014744334433940379, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 193, Fold 1/4 ---
+✂️ Trial 193 podado no fold 1.
+[I 2026-01-25 04:54:43,134] Trial 193 pruned.
+
+--- Iniciando Trial 194 com parâmetros: {'learning_rate': 0.00220120893116765, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 194, Fold 1/4 ---
+
+--- Trial 194, Fold 2/4 ---
+
+--- Trial 194, Fold 3/4 ---
+
+--- Trial 194, Fold 4/4 ---
+🏁 Trial 194 concluído. Média das perdas de validação: 0.23051
+[I 2026-01-25 04:57:20,436] Trial 194 finished with value: 0.23051014449447393 and parameters: {'learning_rate': 0.00220120893116765, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 195 com parâmetros: {'learning_rate': 0.0025221350327160412, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 195, Fold 1/4 ---
+
+--- Trial 195, Fold 2/4 ---
+
+--- Trial 195, Fold 3/4 ---
+
+--- Trial 195, Fold 4/4 ---
+🏁 Trial 195 concluído. Média das perdas de validação: 0.21699
+[I 2026-01-25 04:59:31,381] Trial 195 finished with value: 0.21698829252272844 and parameters: {'learning_rate': 0.0025221350327160412, 'batch_size': 32, 'dropout_rate': 0.4}. Best is trial 78 with value: 0.16601709555834532.
+
+--- Iniciando Trial 196 com parâmetros: {'learning_rate': 0.0018914977719712174, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 196, Fold 1/4 ---
+✂️ Trial 196 podado no fold 1.
+[I 2026-01-25 05:00:02,546] Trial 196 pruned.
+
+--- Iniciando Trial 197 com parâmetros: {'learning_rate': 0.0012869174221702485, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 197, Fold 1/4 ---
+✂️ Trial 197 podado no fold 1.
+[I 2026-01-25 05:00:26,725] Trial 197 pruned.
+
+--- Iniciando Trial 198 com parâmetros: {'learning_rate': 0.0031620232738597738, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 198, Fold 1/4 ---
+✂️ Trial 198 podado no fold 1.
+[I 2026-01-25 05:01:02,661] Trial 198 pruned.
+
+--- Iniciando Trial 199 com parâmetros: {'learning_rate': 0.002293865382238146, 'batch_size': 32, 'dropout_rate': 0.4} ---
+⏳ Pré-carregando e pré-processando imagens na memória RAM...
+✅ Pré-carregamento e pré-processamento concluídos. 420 imagens carregadas como tensores.
+
+--- Trial 199, Fold 1/4 ---
+✂️ Trial 199 podado no fold 1.
+[I 2026-01-25 05:01:46,522] Trial 199 pruned.
+
+--- Otimização Concluída ---
+Nome do Estudo: ccae_hyperparam_optimization_Z24
+Número de trials finalizados: 78
+Número de trials podados: 122
+
+--- Melhor Trial ---
+  Número: 78
+  Valor (Média de Loss): 0.16602
+  Melhores Hiperparâmetros:
+    learning_rate: 0.003002680919431843
+    batch_size: 32
+    dropout_rate: 0.4
