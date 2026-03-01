@@ -25,16 +25,24 @@
 - [X] Damage detection (Rytter scale I[^3])
 - [X] Damage localization (Rytter scale II[^3])
 
-###  **● Code for model optimization and training are on files:**
-`Optimization_and_training_yellow_frame.py`, `Optimization_and_training_Z24.py`
-
-###  **● Code for results visualization are on files:**
-`Results_boxplot_yellow_frame.py`, `Results_boxplot_Z24.py`
-
 ###  **● Data and Code for Yellow Frame signal data pre-processing in MATLAB is on file:**
 `ambient.mat`,`Generate_images_CWT_yellow_frame.m`
 
 ###  **● Data and Code for Z24 bridge signal data pre-processing in MATLAB are on files:**
 `Generate_Raw_data_Z24_Alves_et_al_2024.m`, `Z24_Raw_Data.zip`,`generate_image_CWT_Z24.m`,
+
+###  **● CWT input Images (Yellow Frame)**
+`imagens_cwt_yellow_frame`
+
+###  **● CWT input Images (Z24 Bridge)**
+`Z24_Images_CWT_v1_MATLAB`
+
+###  **● Code for model optimization and training are on files:**
+`Optimization_and_training_yellow_frame.py`, `Optimization_and_training_Z24.py`
+
+###  **● Code for results boxplots visualization are on files:**
+`Results_boxplot_yellow_frame.py`, `Results_boxplot_Z24.py`
+
+
 
 [^3]: [A. Rytter, Vibrational based inspection of civil engineering structures. Dept. of Building Technology and Structural Engineering, Aalborg University, Fracture and Dynamics. R9314 (44) (1993).](https://vbn.aau.dk/en/publications/vibrational-based-inspection-of-civil-engineering-structures)
