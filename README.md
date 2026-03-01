@@ -34,7 +34,7 @@
 ###  **● Code for Yellow Frame signal data pre-processing in MATLAB is on file:**
 `Generate_images_CWT_yellow_frame.m`
 
-###  **● Code for Z24 bridge signal data pre-processing in MATLAB are on files:**
-`Generate_Raw_data_Z24_Alves_et_al_2024.m`, `generate_image_CWT_Z24.m`
+###  **● Data and Code for Z24 bridge signal data pre-processing in MATLAB are on files:**
+`Generate_Raw_data_Z24_Alves_et_al_2024.m`, `Z24_Raw_Data.zip`,`generate_image_CWT_Z24.m`,
 
 [^3]: [A. Rytter, Vibrational based inspection of civil engineering structures. Dept. of Building Technology and Structural Engineering, Aalborg University, Fracture and Dynamics. R9314 (44) (1993).](https://vbn.aau.dk/en/publications/vibrational-based-inspection-of-civil-engineering-structures)
