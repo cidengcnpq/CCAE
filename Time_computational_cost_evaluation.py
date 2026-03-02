@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 # ==============================================================================
-# 1. CONFIGURAÇÃO DOS 4 CASOS
+# 1. CONFIGURATION OF THE 4 CASES
 # ==============================================================================
 BASE_DIR_OUTPUT = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo"
 
@@ -40,7 +40,7 @@ CASES = [
 ]
 
 # ==============================================================================
-# 2. FUNÇÃO DE PROCESSAMENTO
+# 2. PROCESSING FUNCTION
 # ==============================================================================
 def process_study(case_config):
     db_path = os.path.join(BASE_DIR_OUTPUT, case_config["output_folder"], case_config["db_filename"])
@@ -56,28 +56,28 @@ def process_study(case_config):
     try:
         study = optuna.load_study(study_name=case_config["study_name"], storage=storage_url)
         
-        # --- A. DADOS DO MELHOR TRIAL ("O Vencedor") ---
+        # --- A. DATA FROM THE BEST TRIAL ("The Winner") ---
         best_trial = study.best_trial
         best_loss = best_trial.value
         
-        # Tempo específico do melhor trial (em minutos)
+        # Specific time of the best trial (in minutes)
         best_trial_duration_min = (best_trial.datetime_complete - best_trial.datetime_start).total_seconds() / 60.0
         
-        # --- B. ESTATÍSTICAS GERAIS (Todos os Trials Completos) ---
+        # --- B. GENERAL STATISTICS (All Trials Completed) ---
         df = study.trials_dataframe()
         df_complete = df[df['state'] == 'COMPLETE'].copy()
         
         if not df_complete.empty:
-            # Converter datas
+            # Convert dates
             df_complete['datetime_start'] = pd.to_datetime(df_complete['datetime_start'])
             df_complete['datetime_complete'] = pd.to_datetime(df_complete['datetime_complete'])
             
-            # 1. Tempo por Trial (Total dos folds)
+            # 1. Time per Trial (Total folds)
             df_complete['trial_duration_min'] = (df_complete['datetime_complete'] - df_complete['datetime_start']).dt.total_seconds() / 60.0
             mean_trial = df_complete['trial_duration_min'].mean()
             std_trial = df_complete['trial_duration_min'].std()
             
-            # 2. Tempo por Fold (Estimado: Total / N_Splits)
+            # 2. Time per Fold (Estimated: Total / Number of Splits)
             df_complete['fold_duration_min'] = df_complete['trial_duration_min'] / n_splits
             mean_fold = df_complete['fold_duration_min'].mean()
             std_fold = df_complete['fold_duration_min'].std()
@@ -88,7 +88,7 @@ def process_study(case_config):
             mean_fold, std_fold = 0, 0
             count_complete = 0
 
-        # Formatação de strings para a tabela (Média ± Desvio)
+        # String formatting for the table (Mean ± Standard Deviation)
         trial_str = f"{mean_trial:.2f} ± {std_trial:.2f}"
         fold_str = f"{mean_fold:.2f} ± {std_fold:.2f}"
 
@@ -106,7 +106,7 @@ def process_study(case_config):
         return None
 
 # ==============================================================================
-# 3. GERAÇÃO E EXIBIÇÃO DA TABELA
+# 3. TABLE GENERATION AND DISPLAY
 # ==============================================================================
 results_list = []
 
@@ -117,7 +117,7 @@ for case in CASES:
 
 df_final = pd.DataFrame(results_list)
 
-# Definindo a ordem das colunas para exibição lógica
+# Defining the column order for logical display
 cols_order = [
     "Case ID", 
     "Best Loss", 
@@ -135,7 +135,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1000)
 pd.set_option('display.colheader_justify', 'center')
 
-# Exibe a tabela organizada
+# Displays the organized table
 print(df_final[cols_order])
 
 CASES = [
@@ -195,4 +195,5 @@ for case in CASES:
         })
         
     except Exception as e:
+
         print(f"Error reading {case['id']}: {e}")
