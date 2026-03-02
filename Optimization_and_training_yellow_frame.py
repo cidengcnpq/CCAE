@@ -13,17 +13,17 @@ import gc
 import optuna
 
 # ==============================================================================
-# CABEÇALHO DE CONFIGURAÇÃO E INPUTS
+# CONFIGURATION HEADER AND INPUTS
 # ==============================================================================
-# --- Configurações de Diretórios ---
+# --- Directory Settings  ---
 BASE_DIR = "C:/Users/Alienware/Documents/Victor_Higino/imagens_cwt_yellow_frame"
 INTACT_CONDITION_FOLDER = 'd_0_intact'
 OUTPUT_DIR = os.path.join(os.path.dirname(BASE_DIR), 'C:/Users/Alienware/Documents/Victor_Higino/optuna_optimization_output_yellow_frame')
 
-# --- Configurações do Dataset ---
+# --- Dataset settings ---
 SENSORES = [f'Sensor{i}' for i in range(1, 16)]#15 sensores para yellow frame
 
-# --- Configurações do Modelo Fixo ---
+# --- Fixed Model Settings ---
 FIXED_PARAMS = {
     'classifier_linear_dim': 64,
     'bottleneck_channels': 4,
@@ -32,19 +32,19 @@ FIXED_PARAMS = {
     'epoch_warmup':50,
 }
 
-# --- Configurações do Treinamento e K-Fold ---
+# --- Training Settings and K-Fold ---
 N_SPLITS = 4
 EPOCHS = 200
 EARLY_STOP_PATIENCE = 30
 MAX_TRAINING_TIME_PER_FOLD = 1 * 3600
 
-# --- Configurações do Optuna ---
+# --- Optuna settings ---
 N_TRIALS = 200
 STUDY_NAME = "ccae_hyperparam_optimization_yellow_frame"
 DB_FILENAME = "ccae_optimization_yellow_frame.db"
 
 # ==============================================================================
-# 1. DEFINIÇÃO DO DATASET (COM PRÉ-CARREGAMENTO E PRÉ-TRANSFORMAÇÕES)
+# 1. DEFINITION OF THE DATASET (WITH PRE-LOADING AND PRE-TRANSFORMATIONS)
 # ==============================================================================
 class CWTPreloadedDataset(Dataset):
     def __init__(self, root_folder, sensor_names):
@@ -76,7 +76,7 @@ class CWTPreloadedDataset(Dataset):
             if sensor_idx is not None:
                 try:
                     img = Image.open(img_path)
-                    # Aplica a transformação imediatamente e armazena o tensor
+                    # applies the transformation immediately and stores the tensor
                     tensor_img = self.transform(img)
                     self.image_data.append(tensor_img)
                     self.labels.append(sensor_idx)
@@ -104,7 +104,7 @@ def collate_fn_stratified(batch):
     return torch.stack(images), torch.stack(sensor_ids)
 
 # ==============================================================================
-# 2. FUNÇÃO DE PERDA E ARQUITETURA DO MODELO
+# 2. Loss Function and Model Architecture
 # ==============================================================================
 def ssim_loss(x, y):
     return torch.sqrt(torch.mean((1 - ssim(x, y, data_range=1.0, size_average=False)) ** 2))
@@ -164,7 +164,7 @@ class CCAE(nn.Module):
         return x_reconstructed, sensor_logits
 
 # ==============================================================================
-# 3. FUNÇÃO `objective` PARA O OPTUNA
+# 3. OBJECTIVE FUNCTION FOR OPTUNA
 # ==============================================================================
 def objective(trial):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -172,7 +172,7 @@ def objective(trial):
     trial_dir = os.path.join(OUTPUT_DIR, f'trial_{trial.number}')
     os.makedirs(trial_dir, exist_ok=True)
 
-    # --- 1. Definir Hiperparâmetros a serem otimizados ---
+    # --- 1. Define the hyperparameters to be optimized ---
     params = {
         'learning_rate': trial.suggest_float('learning_rate', 1e-4, 1e-1, log=True),
         'batch_size': trial.suggest_categorical('batch_size', [32, 64, 128]),
@@ -181,10 +181,10 @@ def objective(trial):
     }
     print(f"\n--- Iniciando Trial {trial.number} com parâmetros: {params} ---")
 
-    # --- 2. Preparar Dataset e K-Fold ---
+    # --- 2. Prepare Dataset and K-Fold ---
     try:
         full_data_path = os.path.join(BASE_DIR, INTACT_CONDITION_FOLDER)
-        # O dataset é criado aqui e todas as transformações fixas já são aplicadas.
+        # The dataset is created here, and all fixed transformations are already applied.
         full_dataset = CWTPreloadedDataset(full_data_path, SENSORES)
         labels_for_stratification = full_dataset.labels
     
@@ -195,7 +195,7 @@ def objective(trial):
     skf = StratifiedKFold(n_splits=N_SPLITS, shuffle=True, random_state=42)
     fold_losses = []
 
-    # --- 3. Loop de Validação Cruzada (K-Fold) ---
+    # --- 3.  Cross-Validation Loop (K-Fold) ---
     for fold, (train_idx, val_idx) in enumerate(skf.split(np.zeros(len(labels_for_stratification)), labels_for_stratification)):
         print(f"\n--- Trial {trial.number}, Fold {fold+1}/{N_SPLITS} ---")
         
@@ -275,28 +275,28 @@ def objective(trial):
 
         fold_losses.append(best_fold_loss)
         
-        # --- 4. Liberação de Memória da GPU ---
+        # --- 4. GPU Memory Release ---
         del model, optimizer, scheduler, train_loader, val_loader
         gc.collect()
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
-        # --- 5. Pruning (Poda) ---
-        # Reporta a média das perdas dos folds concluídos até agora
+        # --- 5. Pruning  ---
+        # Reports the average losses of completed folds so far
         intermediate_value = np.mean(fold_losses)
         trial.report(intermediate_value, fold)
         if trial.should_prune():
             print(f"✂️ Trial {trial.number} podado no fold {fold+1}.")
             raise optuna.exceptions.TrialPruned()
     
-    # --- 6. Retornar o valor objetivo final para o trial ---
+    # --- 6. Return the final target value for the trial ---
     final_mean_loss = np.mean(fold_losses)
     print(f"🏁 Trial {trial.number} concluído. Média das perdas de validação: {final_mean_loss:.5f}")
     return final_mean_loss
 
 
 # ==============================================================================
-# 4. EXECUÇÃO PRINCIPAL DO ESTUDO OPTUNA
+# 4. MAIN EXECUTION OF THE OPTUNA STUDY
 # ==============================================================================
 if __name__ == "__main__":
     print("--- Iniciando Otimização de Hiperparâmetros com Optuna ---")
@@ -345,3 +345,4 @@ if __name__ == "__main__":
     else:
 
         print("Nenhum trial foi completado com sucesso.")
+
