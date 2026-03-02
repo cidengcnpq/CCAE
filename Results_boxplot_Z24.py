@@ -17,20 +17,20 @@ import seaborn as sns
 import optuna
 
 # ==============================================================================
-# SEÇÃO DE CONFIGURAÇÃO (DEVE SER CONSISTENTE COM O SCRIPT DE TREINAMENTO)
+# CONFIGURATION SECTION
 # ==============================================================================
 
-# --- Configurações de Diretórios do Estudo Optuna ---
-# AJUSTE O BASE_DIR PARA O DIRETÓRIO PAI DE 'optuna_optimization_output'
+# --- Optuna Study Directory Settings ---
+# ADJUST THE BASE_DIR TO THE PARENT DIRECTORY OF 'optuna_optimization_output'
 BASE_DIR_OUTPUT = "C:/Users/Alienware/Documents/Victor_Higino"
 OUTPUT_DIR = os.path.join(BASE_DIR_OUTPUT, 'optuna_optimization_output_Z24_matlab')
 STUDY_NAME = "ccae_hyperparam_optimization_KW51"
 DB_FILENAME = "ccae_optimization_KW51.db"
 
-# --- Configurações de Diretórios dos Dados de Análise ---
+# --- Data Analysis Directory Settings ---
 ROOT_DATA_DIR = "C:/Users/Alienware/Documents/Victor_Higino/imagens_CWT_Z24_v1_matlab"
 
-# --- Configurações do Modelo Fixo (IDÊNTICO AO TREINAMENTO) ---
+# --- Fixed Model Settings (IDENTICAL TO TRAINING) ---
 FIXED_PARAMS = {
     'classifier_linear_dim': 64,
     'bottleneck_channels': 4,
@@ -38,7 +38,7 @@ FIXED_PARAMS = {
     'classification_loss_weight': 0.5,
 }
 
-# --- Configurações do Dataset e Análise ---
+# --- Dataset and Analysis Settings ---
 ALL_SENSORS_MODEL_TRAINED_ON = [f'Sensor{i}' for i in range(1, 8)]
 NUM_SENSORS_IN_TRAINED_MODEL = len(ALL_SENSORS_MODEL_TRAINED_ON)
 DAMAGE_SCENARIOS = ['d_0_intact', 'd_0_unknown', 'd_1', 'd_2','d_3','d_4', 'd_5']
@@ -46,11 +46,10 @@ INTACT_CONDITION_NAME = 'd_0_intact'
 
 
 # ==============================================================================
-# 1. FUNÇÃO PARA CARREGAR O MELHOR MODELO DO ESTUDO OPTUNA
+# 1. FUNCTION TO LOAD THE BEST OPTUNA STUDY MODEL
 # ==============================================================================
 def find_best_model_from_study(study_name, storage_url, output_dir):
-    """Carrega um estudo Optuna, encontra o melhor trial e retorna o caminho
-    para o modelo do primeiro fold e seus hiperparâmetros."""
+    """Loads an Optuna study, finds the best trial, and returns the path to the first-fold model and its hyperparameters."""
     try:
         study = optuna.load_study(study_name=study_name, storage=storage_url)
         best_trial = study.best_trial
@@ -78,7 +77,7 @@ def find_best_model_from_study(study_name, storage_url, output_dir):
         return None, None
 
 # ==============================================================================
-# 2. DEFINIÇÃO DO MODELO CCAE (IDÊNTICA À USADA NO TREINAMENTO)
+# 2. DEFINITION OF THE CCAE MODEL (IDENTICAL TO THAT USED IN TRAINING)
 # ==============================================================================
 class CCAE(nn.Module):
     def __init__(self, num_sensors, bottleneck_channels, classifier_linear_dim, dropout_rate):
@@ -101,10 +100,10 @@ class CCAE(nn.Module):
             nn.BatchNorm2d(bottleneck_channels), nn.ReLU()
         )
         
-        # Embedding do sensor
+        # Embedding
         self.sensor_embedding = nn.Embedding(num_sensors, 64) 
 
-        # Classificador
+        # Classifier
         classifier_input_dim = bottleneck_channels * 8 * 8
         self.classifier = nn.Sequential(
             nn.Flatten(),
@@ -138,7 +137,7 @@ class CCAE(nn.Module):
         return x_reconstructed, sensor_logits
 
     def get_latent_features(self, x, scaling_factor):
-        """Extrai, escala e achata as features latentes condicionais para um vetor 1D."""
+        """Extracts, scales, and flattens conditional latent features into a 1D vector."""
         with torch.no_grad():
             x_encoded = self.encoder(x)
             encoded_features = self.bottleneck_conv(x_encoded)
@@ -147,18 +146,18 @@ class CCAE(nn.Module):
             all_sensor_embeddings = self.sensor_embedding(torch.arange(self.num_sensors).to(x.device))
             combined_sensor_emb = (sensor_probabilities.unsqueeze(2) * all_sensor_embeddings.unsqueeze(0)).sum(dim=1)
             
-            # APLICAÇÃO DO FATOR DE ESCALA
+            # APPLICATION OF THE SCALE FACTOR
             combined_sensor_emb_reshaped = combined_sensor_emb.view(-1, 1, 8, 8) * scaling_factor
             
             concatenated_features = torch.cat([encoded_features, combined_sensor_emb_reshaped], dim=1)
             
-            # Aplica Global Average Pooling para achatar para um vetor 1D
+            # Applies Global Average Pooling to flatten a 1D vector.
             pooled_latent = nn.AdaptiveAvgPool2d((1, 1))(concatenated_features)
             
             return pooled_latent.view(pooled_latent.size(0), -1)
 
 # ==============================================================================
-# 3. DEFINIÇÕES DE DATASET, DATALOADER, E FUNÇÕES AUXILIARES
+# 3. Definitions of Dataset, Data Loader, and Auxiliary Functions
 # ==============================================================================
 class CWTDatasetAnalysis(Dataset):
     def __init__(self, root_folder, all_sensors_for_mapping):
@@ -214,7 +213,7 @@ def extract_latent_features(model, dataloader, device, scaling_factor):
         for images, names in dataloader:
             if images.numel() == 0: continue
             images = images.to(device)
-            # Passa o fator de escala para o método do modelo
+            # Pass the scaling factor to the model method.
             latent_features = model.get_latent_features(images, scaling_factor).cpu().numpy()
             for i, name in enumerate(names):
                 features_dict[name] = latent_features[i]
@@ -245,7 +244,7 @@ def load_best_model(model_path, device, num_sensors, fixed_params, best_hyperpar
         return None
 
 # ==============================================================================
-# 4. FUNÇÃO PARA CALCULAR O FATOR DE RE-ESCALA COM MÚLTIPLOS SENSORES
+# 4. FUNCTION FOR CALCULATING THE RESCALING FACTOR WITH MULTIPLE SENSORS
 # ==============================================================================
 def calculate_scaling_factor_all_sensors(model, dataloaders, device):
     """
@@ -265,7 +264,7 @@ def calculate_scaling_factor_all_sensors(model, dataloaders, device):
                     continue
                 images = images.to(device)
                 
-                # Forward pass para obter as features intermediárias
+                # Forward pass to obtain the intermediate features.
                 x_encoded = model.encoder(images)
                 encoded_features = model.bottleneck_conv(x_encoded)
                 sensor_logits = model.classifier(encoded_features)
@@ -278,7 +277,7 @@ def calculate_scaling_factor_all_sensors(model, dataloaders, device):
                 ).sum(dim=1)
                 combined_sensor_emb_reshaped = combined_sensor_emb.view(-1, 1, 8, 8)
 
-                # Calcular a norma de Frobenius para cada feature no batch
+                # Calculate the Frobenius norm for each feature in the batch.
                 encoded_norm = torch.linalg.norm(encoded_features.flatten(start_dim=1), dim=1)
                 sensor_emb_norm = torch.linalg.norm(combined_sensor_emb_reshaped.flatten(start_dim=1), dim=1)
                 
@@ -304,13 +303,13 @@ def calculate_scaling_factor_all_sensors(model, dataloaders, device):
     return scaling_factor
 
 # ==============================================================================
-# 5. FUNÇÃO PRINCIPAL PARA ANÁLISE E PLOTAGEM
+# 5. MAIN FUNCTION FOR ANALYSIS AND PLOTTING
 # ==============================================================================
 def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Usando dispositivo: {device}")
 
-    # --- ETAPA 1: Encontrar e carregar o melhor modelo ---
+    # --- STEP 1: Find and upload the best model ---
     db_path = os.path.join(OUTPUT_DIR, DB_FILENAME)
     storage_url = f"sqlite:///{db_path}"
     
@@ -328,7 +327,7 @@ def main():
     )
     if model is None: return
 
-    # --- ETAPA 2: Executar a análise de anomalia ---
+    # --- STEP 2: Run the anomaly analysis ---
     sensor_groups_by_floor = {
         'g1': ['Sensor1','Sensor2'],
         'g2': ['Sensor2','Sensor3'],
@@ -342,7 +341,7 @@ def main():
     print("\n--- Carregando dados para análise ---")
     all_sensor_data = load_all_sensor_data(ROOT_DATA_DIR, DAMAGE_SCENARIOS, all_sensors_for_analysis, ALL_SENSORS_MODEL_TRAINED_ON)
 
-    # --- Calculando fator de escala usando todos os dados intactos ---
+    # --- Calculating the scaling factor using all the data intact. ---
     print("\n--- Calculando fator de escala usando todos os dados intactos ---")
     
     all_intact_dataloaders = []
@@ -504,4 +503,5 @@ def main():
     plt.show()
 
 if __name__ == "__main__":
+
     main()
