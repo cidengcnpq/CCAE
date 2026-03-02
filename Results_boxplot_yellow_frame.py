@@ -17,28 +17,28 @@ import seaborn as sns
 import optuna
 
 # ==============================================================================
-# SEÇÃO DE CONFIGURAÇÃO (DEVE SER CONSISTENTE COM O SCRIPT DE TREINAMENTO)
+# CONFIGURATION SECTION
 # ==============================================================================
 
-# --- Configurações de Diretórios do Estudo Optuna ---
-# AJUSTE O BASE_DIR PARA O DIRETÓRIO PAI DE 'optuna_optimization_output'
-BASE_DIR_OUTPUT = "C:/Users/Alienware/Documents/Victor_Higino"
-OUTPUT_DIR = os.path.join(BASE_DIR_OUTPUT, 'optuna_optimization_output_v0')
-STUDY_NAME = "ccae_hyperparam_optimization"
-DB_FILENAME = "ccae_optimization.db"
+# --- Optuna Study Directory Settings ---
+# Adjust the BASE_DIR to the parent directory of 'optuna_optimization_output'.
+BASE_DIR_OUTPUT = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo"
+OUTPUT_DIR = os.path.join(BASE_DIR_OUTPUT, 'optuna_optimization_output_yellow_frame')
+STUDY_NAME = "ccae_hyperparam_optimization_yellow_frame"
+DB_FILENAME = "ccae_optimization_yellow_frame.db"
 
-# --- Configurações de Diretórios dos Dados de Análise ---
-ROOT_DATA_DIR = "C:/Users/Alienware/Documents/Victor_Higino/imagens_cwt_yellow_frame"
+# --- Data Analysis Directory Settings ---
+ROOT_DATA_DIR = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo/imagens_cwt_yellow_frame"
 
-# --- Configurações do Modelo Fixo (IDÊNTICO AO TREINAMENTO) ---
+# --- Fixed Model Settings (IDENTICAL TO TRAINING) ---
 FIXED_PARAMS = {
     'classifier_linear_dim': 64,
     'bottleneck_channels': 4,
     'reconstruction_loss_weight': 1.0,
-    'classification_loss_weight': 0.5,
+    'classification_loss_weight': 0.1,
 }
 
-# --- Configurações do Dataset e Análise ---
+# --- Dataset and Analysis Settings ---
 ALL_SENSORS_MODEL_TRAINED_ON = [f'Sensor{i}' for i in range(1, 16)]
 NUM_SENSORS_IN_TRAINED_MODEL = len(ALL_SENSORS_MODEL_TRAINED_ON)
 DAMAGE_SCENARIOS = ['d_0_intact', 'd_0_unknown', 'd_1', 'd_2']
@@ -46,11 +46,10 @@ INTACT_CONDITION_NAME = 'd_0_intact'
 
 
 # ==============================================================================
-# 1. FUNÇÃO PARA CARREGAR O MELHOR MODELO DO ESTUDO OPTUNA
+# 1. FUNCTION TO LOAD THE BEST OPTUNA STUDY MODEL
 # ==============================================================================
 def find_best_model_from_study(study_name, storage_url, output_dir):
-    """Carrega um estudo Optuna, encontra o melhor trial e retorna o caminho
-    para o modelo do primeiro fold e seus hiperparâmetros."""
+    """Loads an Optuna study, finds the best trial, and returns the path to the first-fold model and its hyperparameters."""
     try:
         study = optuna.load_study(study_name=study_name, storage=storage_url)
         best_trial = study.best_trial
@@ -78,7 +77,7 @@ def find_best_model_from_study(study_name, storage_url, output_dir):
         return None, None
 
 # ==============================================================================
-# 2. DEFINIÇÃO DO MODELO CCAE (IDÊNTICA À USADA NO TREINAMENTO)
+# 2. DEFINITION OF THE CCAE MODEL (IDENTICAL TO THAT USED IN TRAINING)
 # ==============================================================================
 class CCAE(nn.Module):
     def __init__(self, num_sensors, bottleneck_channels, classifier_linear_dim, dropout_rate):
@@ -101,10 +100,10 @@ class CCAE(nn.Module):
             nn.BatchNorm2d(bottleneck_channels), nn.ReLU()
         )
         
-        # Embedding do sensor
+        # Embedding
         self.sensor_embedding = nn.Embedding(num_sensors, 64) 
 
-        # Classificador
+        # Classifier
         classifier_input_dim = bottleneck_channels * 8 * 8
         self.classifier = nn.Sequential(
             nn.Flatten(),
@@ -138,7 +137,7 @@ class CCAE(nn.Module):
         return x_reconstructed, sensor_logits
 
     def get_latent_features(self, x, scaling_factor):
-        """Extrai, escala e achata as features latentes condicionais para um vetor 1D."""
+        """Extracts, scales, and flattens conditional latent features into a 1D vector."""
         with torch.no_grad():
             x_encoded = self.encoder(x)
             encoded_features = self.bottleneck_conv(x_encoded)
@@ -147,18 +146,18 @@ class CCAE(nn.Module):
             all_sensor_embeddings = self.sensor_embedding(torch.arange(self.num_sensors).to(x.device))
             combined_sensor_emb = (sensor_probabilities.unsqueeze(2) * all_sensor_embeddings.unsqueeze(0)).sum(dim=1)
             
-            # APLICAÇÃO DO FATOR DE ESCALA
+            # APPLICATION OF THE SCALE FACTOR
             combined_sensor_emb_reshaped = combined_sensor_emb.view(-1, 1, 8, 8) * scaling_factor
             
             concatenated_features = torch.cat([encoded_features, combined_sensor_emb_reshaped], dim=1)
             
-            # Aplica Global Average Pooling para achatar para um vetor 1D
+            # Applies Global Average Pooling to flatten a 1D vector.
             pooled_latent = nn.AdaptiveAvgPool2d((1, 1))(concatenated_features)
             
             return pooled_latent.view(pooled_latent.size(0), -1)
 
 # ==============================================================================
-# 3. DEFINIÇÕES DE DATASET, DATALOADER, E FUNÇÕES AUXILIARES
+# 3. Definitions of Dataset, Data Loader, and Auxiliary Functions
 # ==============================================================================
 class CWTDatasetAnalysis(Dataset):
     def __init__(self, root_folder, all_sensors_for_mapping):
@@ -214,7 +213,7 @@ def extract_latent_features(model, dataloader, device, scaling_factor):
         for images, names in dataloader:
             if images.numel() == 0: continue
             images = images.to(device)
-            # Passa o fator de escala para o método do modelo
+             # Pass the scaling factor to the model method.
             latent_features = model.get_latent_features(images, scaling_factor).cpu().numpy()
             for i, name in enumerate(names):
                 features_dict[name] = latent_features[i]
@@ -245,12 +244,11 @@ def load_best_model(model_path, device, num_sensors, fixed_params, best_hyperpar
         return None
 
 # ==============================================================================
-# 4. FUNÇÃO PARA CALCULAR O FATOR DE RE-ESCALA COM MÚLTIPLOS SENSORES
+# 4. FUNCTION FOR CALCULATING THE RESCALING FACTOR WITH MULTIPLE SENSORS
 # ==============================================================================
 def calculate_scaling_factor_all_sensors(model, dataloaders, device):
     """
-    Estima um fator de escala para balancear 'encoded_features' e
-    'combined_sensor_emb_reshaped' usando dados de todos os dataloaders intactos.
+   Estimate a scaling factor to balance 'encoded_features' and 'combined_sensor_emb_reshaped' using data from all intact dataloaders.
     """
     model.eval()
     encoded_norms = []
@@ -265,7 +263,7 @@ def calculate_scaling_factor_all_sensors(model, dataloaders, device):
                     continue
                 images = images.to(device)
                 
-                # Forward pass para obter as features intermediárias
+                # Forward pass to obtain the intermediate features.
                 x_encoded = model.encoder(images)
                 encoded_features = model.bottleneck_conv(x_encoded)
                 sensor_logits = model.classifier(encoded_features)
@@ -278,7 +276,7 @@ def calculate_scaling_factor_all_sensors(model, dataloaders, device):
                 ).sum(dim=1)
                 combined_sensor_emb_reshaped = combined_sensor_emb.view(-1, 1, 8, 8)
 
-                # Calcular a norma de Frobenius para cada feature no batch
+                # Calculate the Frobenius norm for each feature in the batch.
                 encoded_norm = torch.linalg.norm(encoded_features.flatten(start_dim=1), dim=1)
                 sensor_emb_norm = torch.linalg.norm(combined_sensor_emb_reshaped.flatten(start_dim=1), dim=1)
                 
@@ -304,13 +302,13 @@ def calculate_scaling_factor_all_sensors(model, dataloaders, device):
     return scaling_factor
 
 # ==============================================================================
-# 5. FUNÇÃO PRINCIPAL PARA ANÁLISE E PLOTAGEM
+# 5. MAIN FUNCTION FOR ANALYSIS AND PLOTTING
 # ==============================================================================
 def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Usando dispositivo: {device}")
 
-    # --- ETAPA 1: Encontrar e carregar o melhor modelo ---
+    # --- STEP 1: Find and upload the best model ---
     db_path = os.path.join(OUTPUT_DIR, DB_FILENAME)
     storage_url = f"sqlite:///{db_path}"
     
@@ -328,20 +326,20 @@ def main():
     )
     if model is None: return
 
-    # --- ETAPA 2: Executar a análise de anomalia ---
+    # --- STEP 2: Run the anomaly analysis ---
     sensor_groups_by_floor = {
-        '1_andar': ['Sensor1', 'Sensor2', 'Sensor3'],
-        '2_andar': ['Sensor4', 'Sensor5', 'Sensor6'],
-        '3_andar': ['Sensor7', 'Sensor8', 'Sensor9'],
-        '4_andar': ['Sensor10', 'Sensor11', 'Sensor12'],
-        '5_andar': ['Sensor13', 'Sensor14', 'Sensor15']
+        'Base': ['Sensor1', 'Sensor2', 'Sensor3'],
+        '1st floor': ['Sensor4', 'Sensor5', 'Sensor6'],
+        '2nd floor': ['Sensor7', 'Sensor8', 'Sensor9'],
+        '3rd floor': ['Sensor10', 'Sensor11', 'Sensor12'],
+        '4th floor': ['Sensor13', 'Sensor14', 'Sensor15']
     }
     all_sensors_for_analysis = [s for floor_sensors in sensor_groups_by_floor.values() for s in floor_sensors]
 
     print("\n--- Carregando dados para análise ---")
     all_sensor_data = load_all_sensor_data(ROOT_DATA_DIR, DAMAGE_SCENARIOS, all_sensors_for_analysis, ALL_SENSORS_MODEL_TRAINED_ON)
 
-    # --- Calculando fator de escala usando todos os dados intactos ---
+    # --- Calculating the scaling factor using all the data intact. ---
     print("\n--- Calculando fator de escala usando todos os dados intactos ---")
     
     all_intact_dataloaders = []
@@ -414,7 +412,7 @@ def main():
         all_filenames_intact = set()
         for s in sensors_in_floor:
             all_filenames_intact.update(sensor_mahalanobis_indicators[s].get(INTACT_CONDITION_NAME, {}).keys())
-
+        all_filenames_intact = sorted(list(all_filenames_intact))
         floor_intact_mds_vectors = []
         for filename in all_filenames_intact:
             mds_vector = [sensor_mahalanobis_indicators[s].get(INTACT_CONDITION_NAME, {}).get(filename) for s in sensors_in_floor]
@@ -471,27 +469,58 @@ def main():
     for floor in floor_order:
         intact_di_values = df_boxplot[(df_boxplot['andar'] == floor) & (df_boxplot['cenario'] == INTACT_CONDITION_NAME)]['di']
         if not intact_di_values.empty:
-            threshold = np.percentile(intact_di_values, 95)
+            threshold = np.percentile(intact_di_values, 99)
             floor_thresholds[floor] = threshold
             print(f"Threshold de Anomalia para {floor}: {threshold:.4f}")
+            
+    # Rename scenario legends
+    labels_legenda = {
+        'd_0_intact': 'Intact (train)',
+        'd_0_unknown': 'Intact (test)',
+        'd_1': 'Damage 1',
+        'd_2': 'Damage 2'
+    }
 
+    # 2. Update the DataFrame with the new names
+    df_boxplot['cenario'] = df_boxplot['cenario'].map(labels_legenda)
+
+    # 3. Define the new color palette
+    nova_palette = {
+        'Intact (train)': '#00BCD4',  
+        'Intact (test)': '#34A853', 
+        'Damage 1': '#EA4335',          
+        'Damage 2': '#FBBC05'           
+    }
     fig, ax = plt.subplots(figsize=(16, 9))
     sns.boxplot(data=df_boxplot, x='andar', y='di', hue='cenario', ax=ax,
-                palette={'d_0_intact': 'blue', 'd_0_unknown': 'green', 'd_1': 'orange', 'd_2': 'red'},
-                showfliers=False)
+                    palette=nova_palette, 
+                    showfliers=False)
+    
+    # --- Axis Adjustment (Ticks) ---
+    for label in ax.get_xticklabels():
+        label.set_fontname('Times New Roman')
+        label.set_fontsize(14)
     
     for i, floor in enumerate(floor_order):
         if floor in floor_thresholds:
             ax.hlines(y=floor_thresholds[floor], xmin=i - 0.4, xmax=i + 0.4, 
-                      colors='purple', linestyles='--', label='Threshold (95%)' if i == 0 else "")
+                      colors='purple', linestyles='--', label='Threshold (99%)' if i == 0 else "")
 
-    ax.set_xlabel('Andar do Pórtico', fontsize=12)
-    ax.set_ylabel('Índice de Dano Global (DI-KDE) [log-scale]', fontsize=12)
-    ax.set_title('Distribuição do Índice de Dano Global por Andar e Cenário de Dano', fontsize=14, weight='bold')
+    ax.set_xlabel('Group of sensors', fontsize=14, font='Times New Roman')
+    ax.set_ylabel('Global damage index (DI-KDE) [log-scale]', fontsize=14, font='Times New Roman')
     ax.set_yscale('log')
     ax.grid(True, which="both", ls="--", alpha=0.6)
     plt.xticks(rotation=10)
-    plt.legend(title='Cenário de Dano', bbox_to_anchor=(1.02, 1), loc='upper left')
+    # 1. Create the legend 
+    legend = plt.legend(title='Damage scenario', 
+                        bbox_to_anchor=(1.02, 1), 
+                        loc='upper left',
+                        prop={'family': 'Times New Roman', 'size': 12})
+
+    # 2. change in the font of the caption TITLE.
+    plt.setp(legend.get_title(), fontname='Times New Roman', fontsize=14)
+
+    plt.tight_layout(rect=[0, 0, 0.88, 1])
     plt.tight_layout(rect=[0, 0, 0.88, 1])
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -502,5 +531,45 @@ def main():
     print(f"\n✅ Plot salvo em: {os.path.join(plots_save_dir, plot_filename)}")
     plt.show()
 
+
+    # --- STEP 3: Calculation of Detection Metrics ---
+
+    def calculate_detection_stats(df_boxplot, floor_thresholds):
+        """
+        Calculates the percentage of samples below the threshold (classified as intact).
+        """
+        results = []
+        
+        # Group by group (floor) and setting.
+        for (floor, scenario), group in df_boxplot.groupby(['andar', 'cenario']):
+            if floor in floor_thresholds:
+                threshold = floor_thresholds[floor]
+                total_samples = len(group)
+                # Samples below the threshold are considered "Negative" (non-anomalous).
+                below_threshold = (group['di'] <= threshold).sum()
+                percentage = (below_threshold / total_samples) * 100
+                
+                results.append({
+                    'Group': floor,
+                    'Scenario': scenario,
+                    'Samples_Below_Thr': below_threshold,
+                    'Total_Samples': total_samples,
+                    'Percentage_Below (%)': round(percentage, 2)
+                })
+
+        stats_df = pd.DataFrame(results)
+        
+        print("\n" + "="*60)
+        print("PORCENTAGEM DE AMOSTRAS ABAIXO DO THRESHOLD (INTACT)")
+        print("="*60)
+        print(stats_df.to_string(index=False))
+        print("-" * 60)
+        print("Nota: Para cenários de dano (d_1 a d_5), valores baixos indicam alta detecção.")
+        print("Para cenários intactos, valores altos indicam baixa taxa de falso alarme.")
+        
+        return stats_df
+
+    # Para usar, basta chamar a função logo após a definição de 'floor_thresholds' no seu main():
+    calculate_detection_stats(df_boxplot, floor_thresholds)
 if __name__ == "__main__":
     main()
