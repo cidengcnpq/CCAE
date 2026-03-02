@@ -11,7 +11,7 @@ import random
 from pytorch_msssim import ssim 
 
 # ==============================================================================
-# CONFIGURAÇÕES
+# SETTINGS
 # ==============================================================================
 
 BASE_DIR_OUTPUT = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo"
@@ -27,13 +27,13 @@ FIXED_PARAMS = {
 }
 NUM_SENSORS = 15
 
-# --- CONFIGURAÇÃO DO TESTE ---
+# --- TEST CONFIGURATION ---
 TARGET_SENSOR = 'Sensor5'       
-INCORRECT_SENSOR_IDX = 12        # Sensor "Mentiroso" (Índice 12 = Sensor 13)
+INCORRECT_SENSOR_IDX = 12        # "Liar" Sensor (Index 12 = Sensor 13)
 SAMPLE_IDX = random.randint(0, 100) 
 
 # ==============================================================================
-# DEFINIÇÃO DO MODELO
+# MODEL DEFINITION
 # ==============================================================================
 class CCAE(nn.Module):
     def __init__(self, num_sensors, bottleneck_channels, classifier_linear_dim, dropout_rate):
@@ -107,7 +107,7 @@ class CCAE(nn.Module):
         return x_reconstructed
 
 # ==============================================================================
-# FUNÇÕES AUXILIARES
+# Auxiliary Functions
 # ==============================================================================
 
 def load_best_model_optuna(study_name, base_output_dir):
@@ -147,7 +147,7 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Device: {device}")
 
-    # 1. Carregar Modelo
+    # 1. Load Model
     model_path, best_params = load_best_model_optuna(STUDY_NAME, OUTPUT_DIR)
     if not model_path: return
 
@@ -156,11 +156,11 @@ def main():
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
 
-    # 2. Carregar Imagem (Capturando o nome do arquivo)
+    # 2. Load images
     input_tensor, img_filename = get_sample_image(ROOT_DATA_DIR, TARGET_SENSOR)
     input_tensor = input_tensor.to(device)
 
-    # 3. Gerar Reconstruções e Calcular Métricas
+    # 3. Generate Reconstructions and Calculate Metrics
     with torch.no_grad():
         rec_standard = model(input_tensor)
         rec_incorrect = model.forward_forced_context(input_tensor, forced_sensor_idx=INCORRECT_SENSOR_IDX)
@@ -171,7 +171,7 @@ def main():
         ssim_std = ssim(rec_standard, input_tensor, data_range=1.0, size_average=True).item()
         ssim_wrong = ssim(rec_incorrect, input_tensor, data_range=1.0, size_average=True).item()
 
-    # 4. Preparar para Plotagem
+    # 4. Prepare for Plotting
     img_orig = input_tensor.squeeze().cpu().numpy()
     img_std = rec_standard.squeeze().cpu().numpy()
     img_wrong = rec_incorrect.squeeze().cpu().numpy()
@@ -179,19 +179,19 @@ def main():
     res_std = np.abs(img_orig - img_std)
     res_wrong = np.abs(img_orig - img_wrong)
 
-    # Normalização de escalas
+    # DEFINITION OF COMMON SCALES
     imgs_max_val = np.max([img_orig.max(), img_std.max(), img_wrong.max()])
     imgs_min_val = 0.0 
     err_max_val = np.max([res_std.max(), res_wrong.max()])
     err_min_val = 0.0
 
-    # 5. Plotagem
+    # 5. Plotting
     fig, axes = plt.subplots(2, 3, figsize=(16, 9))
     cmap_img = 'gray'
     cmap_err = 'inferno'
 
-    # --- Linha 1: Imagens ---
-    # Original (Incluindo o nome da imagem no título)
+    # --- Line 1: Images ---
+    
     ax = axes[0, 0]
     im1 = ax.imshow(img_orig, cmap=cmap_img, vmin=imgs_min_val, vmax=imgs_max_val)
     ax.set_title(f"(a) Original Input\nYellow Frame: {TARGET_SENSOR} (File: {img_filename} )", 
@@ -199,7 +199,7 @@ def main():
     ax.axis('off')
     plt.colorbar(im1, ax=ax, fraction=0.046, pad=0.04)
 
-    # Reconstrução Padrão
+    # Standard Reconstruction
     ax = axes[0, 1]
     im2 = ax.imshow(img_std, cmap=cmap_img, vmin=imgs_min_val, vmax=imgs_max_val)
     ax.set_title(f"(b) Standard Reconstruction\nSSIM: {ssim_std:.4f} | MSE: {mse_std:.5f}", 
@@ -207,7 +207,7 @@ def main():
     ax.axis('off')
     plt.colorbar(im2, ax=ax, fraction=0.046, pad=0.04)
 
-    # Reconstrução Incorreta
+    # Incorrect Reconstruction
     ax = axes[0, 2]
     im3 = ax.imshow(img_wrong, cmap=cmap_img, vmin=imgs_min_val, vmax=imgs_max_val)
     ax.set_title(f"(c) Forced Sensor {INCORRECT_SENSOR_IDX+1} Context\nSSIM: {ssim_wrong:.4f} | MSE: {mse_wrong:.5f}", 
@@ -215,19 +215,19 @@ def main():
     ax.axis('off')
     plt.colorbar(im3, ax=ax, fraction=0.046, pad=0.04)
 
-    # --- Linha 2: Residuais ---
+    
     axes[1, 0].axis('off')
     axes[1, 0].text(0.5, 0.5, "Absolute Difference Maps\n|Original - Reconstructed|", 
                     ha='center', va='center', fontsize=13, fontfamily='Times new roman', fontweight='bold')
 
-    # Residual Padrão
+    # Standard Residual
     ax = axes[1, 1]
     im4 = ax.imshow(res_std, cmap=cmap_err, vmin=err_min_val, vmax=err_max_val)
     ax.set_title(f"(d) Residual Standard", fontsize=11, fontfamily='Times new roman', fontweight='bold')
     ax.axis('off')
     plt.colorbar(im4, ax=ax, fraction=0.046, pad=0.04)
 
-    # Residual Incorreto
+    # Incorrect Residual
     ax = axes[1, 2]
     im5 = ax.imshow(res_wrong, cmap=cmap_err, vmin=err_min_val, vmax=err_max_val)
     ax.set_title(f"(e) Residual Incorrect Context", fontsize=11, fontfamily='Times new roman', fontweight='bold')
@@ -239,4 +239,5 @@ def main():
     plt.show()
 
 if __name__ == "__main__":
+
     main()
