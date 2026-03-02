@@ -21,21 +21,21 @@ import optuna
 # ==============================================================================
 
 # --- Optuna Study Directory Settings ---
-# ADJUST THE BASE_DIR TO THE PARENT DIRECTORY OF 'optuna_optimization_output'
-BASE_DIR_OUTPUT = "C:/Users/Alienware/Documents/Victor_Higino"
-OUTPUT_DIR = os.path.join(BASE_DIR_OUTPUT, 'optuna_optimization_output_Z24_matlab')
-STUDY_NAME = "ccae_hyperparam_optimization_KW51"
-DB_FILENAME = "ccae_optimization_KW51.db"
+# Adjust the BASE_DIR to the parent directory of 'optuna_optimization_output'.
+BASE_DIR_OUTPUT = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo"
+OUTPUT_DIR = os.path.join(BASE_DIR_OUTPUT, 'optuna_optimization_output_Z24')
+STUDY_NAME = "ccae_hyperparam_optimization_Z24"
+DB_FILENAME = "ccae_optimization_Z24.db"
 
 # --- Data Analysis Directory Settings ---
-ROOT_DATA_DIR = "C:/Users/Alienware/Documents/Victor_Higino/imagens_CWT_Z24_v1_matlab"
+ROOT_DATA_DIR = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo/imagens_CWT_Z24_v1_matlab"
 
 # --- Fixed Model Settings (IDENTICAL TO TRAINING) ---
 FIXED_PARAMS = {
     'classifier_linear_dim': 64,
     'bottleneck_channels': 4,
     'reconstruction_loss_weight': 1.0,
-    'classification_loss_weight': 0.5,
+    'classification_loss_weight': 0.1,
 }
 
 # --- Dataset and Analysis Settings ---
@@ -137,7 +137,7 @@ class CCAE(nn.Module):
         return x_reconstructed, sensor_logits
 
     def get_latent_features(self, x, scaling_factor):
-        """Extracts, scales, and flattens conditional latent features into a 1D vector."""
+        """Extrai, escala e achata as features latentes condicionais para um vetor 1D."""
         with torch.no_grad():
             x_encoded = self.encoder(x)
             encoded_features = self.bottleneck_conv(x_encoded)
@@ -248,8 +248,7 @@ def load_best_model(model_path, device, num_sensors, fixed_params, best_hyperpar
 # ==============================================================================
 def calculate_scaling_factor_all_sensors(model, dataloaders, device):
     """
-    Estima um fator de escala para balancear 'encoded_features' e
-    'combined_sensor_emb_reshaped' usando dados de todos os dataloaders intactos.
+    Estimate a scaling factor to balance 'encoded_features' and 'combined_sensor_emb_reshaped' using data from all intact dataloaders.
     """
     model.eval()
     encoded_norms = []
@@ -414,7 +413,7 @@ def main():
         all_filenames_intact = set()
         for s in sensors_in_floor:
             all_filenames_intact.update(sensor_mahalanobis_indicators[s].get(INTACT_CONDITION_NAME, {}).keys())
-
+        all_filenames_intact = sorted(list(all_filenames_intact))
         floor_intact_mds_vectors = []
         for filename in all_filenames_intact:
             mds_vector = [sensor_mahalanobis_indicators[s].get(INTACT_CONDITION_NAME, {}).get(filename) for s in sensors_in_floor]
@@ -471,27 +470,62 @@ def main():
     for floor in floor_order:
         intact_di_values = df_boxplot[(df_boxplot['andar'] == floor) & (df_boxplot['cenario'] == INTACT_CONDITION_NAME)]['di']
         if not intact_di_values.empty:
-            threshold = np.percentile(intact_di_values, 95)
+            threshold = np.percentile(intact_di_values, 99)
             floor_thresholds[floor] = threshold
             print(f"Threshold de Anomalia para {floor}: {threshold:.4f}")
 
     fig, ax = plt.subplots(figsize=(16, 9))
+    
+    # Define custom colors for each scenario.
+    colors = {
+        'd_0_intact': '#FBBC05',
+        'd_0_unknown': '#00BCD4',
+        'd_1': '#EA4335',
+        'd_2': '#C2185B',
+        'd_3': '#9C27B0',
+        'd_4': '#1565C0',
+        'd_5': '#34A853',
+    }
+    
     sns.boxplot(data=df_boxplot, x='andar', y='di', hue='cenario', ax=ax,
-                #palette={'d_0_intact': 'blue', 'd_0_unknown': 'green', 'd_1': 'orange', 'd_2': 'red'},
-                showfliers=False)
+                palette=colors, showfliers=False)
     
     for i, floor in enumerate(floor_order):
         if floor in floor_thresholds:
             ax.hlines(y=floor_thresholds[floor], xmin=i - 0.4, xmax=i + 0.4, 
-                      colors='purple', linestyles='--', label='Threshold (95%)' if i == 0 else "")
+                      colors='purple', linestyles='--', label='Threshold (99%)' if i == 0 else "")
 
-    ax.set_xlabel('Andar do Pórtico', fontsize=12)
-    ax.set_ylabel('Índice de Dano Global (DI-KDE) [log-scale]', fontsize=12)
-    ax.set_title('Distribuição do Índice de Dano Global por Andar e Cenário de Dano', fontsize=14, weight='bold')
+    ax.set_xlabel('Groups of sensors', fontsize=14, fontfamily='times new roman')
+    ax.set_ylabel('Global Damage Index (DI-KDE) [log-scale]', fontsize=14, fontfamily='times new roman')
     ax.set_yscale('log')
     ax.grid(True, which="both", ls="--", alpha=0.6)
-    plt.xticks(rotation=10)
-    plt.legend(title='Cenário de Dano', bbox_to_anchor=(1.02, 1), loc='upper left')
+    
+    # Change X-axis ticks (uses Unicode subscripts to keep the entire string in Times New Roman)
+    tick_labels = ['g\u2081', 'g\u2082', 'g\u2083', 'g\u2084', 'g\u2085', 'g\u2086']
+    ax.set_xticklabels(tick_labels, fontfamily='times new roman', fontsize=16)
+    plt.setp(ax.get_xticklabels(), rotation=10, fontfamily='times new roman', fontsize=16)
+    ax.tick_params(axis='y', labelsize=14)
+    
+    # Rename scenario legends
+    scenario_labels = {
+        'd_0_intact': 'Intact (train)',
+        'd_0_unknown': 'Intact (test)',
+        'd_1': 'Damage 1',
+        'd_2': 'Damage 2',
+        'd_3': 'Damage 3',
+        'd_4': 'Damage 4',
+        'd_5': 'Damage 5'
+    }
+    
+    handles, labels = ax.get_legend_handles_labels()
+    new_labels = [scenario_labels.get(label, label) for label in labels]
+    legend = ax.legend(handles, new_labels, title='Damage Scenario', bbox_to_anchor=(1.02, 1), loc='upper left',fontsize=14)
+    
+    legend.get_title().set_fontfamily('times new roman')
+    legend.get_title().set_fontsize(14)
+    for text in legend.get_texts():
+        text.set_fontfamily('times new roman')
+        text.set_fontsize(14)
     plt.tight_layout(rect=[0, 0, 0.88, 1])
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -501,7 +535,96 @@ def main():
     plt.savefig(os.path.join(plots_save_dir, plot_filename), dpi=300, bbox_inches='tight')
     print(f"\n✅ Plot salvo em: {os.path.join(plots_save_dir, plot_filename)}")
     plt.show()
+    
+    # --- STEP 3: Calculation of Detection Metrics ---
 
+    def calculate_detection_stats(df_boxplot, floor_thresholds):
+        """
+        Calcula a porcentagem de amostras abaixo do threshold (classificadas como íntegras).
+        """
+        results = []
+        
+        # Group by group and scenario.
+        for (floor, scenario), group in df_boxplot.groupby(['andar', 'cenario']):
+            if floor in floor_thresholds:
+                threshold = floor_thresholds[floor]
+                total_samples = len(group)
+                # Samples below the threshold are considered "Negative" (non-anomalous).
+                below_threshold = (group['di'] <= threshold).sum()
+                percentage = (below_threshold / total_samples) * 100
+                
+                results.append({
+                    'Group': floor,
+                    'Scenario': scenario,
+                    'Samples_Below_Thr': below_threshold,
+                    'Total_Samples': total_samples,
+                    'Percentage_Below (%)': round(percentage, 2)
+                })
+
+        stats_df = pd.DataFrame(results)
+        
+        print("\n" + "="*60)
+        print("PORCENTAGEM DE AMOSTRAS ABAIXO DO THRESHOLD (INTACT)")
+        print("="*60)
+        print(stats_df.to_string(index=False))
+        print("-" * 60)
+        print("Nota: Para cenários de dano (d_1 a d_5), valores baixos indicam alta detecção.")
+        print("Para cenários intactos, valores altos indicam baixa taxa de falso alarme.")
+        
+        return stats_df
+
+    # To use it, simply call the function right after defining 'floor_thresholds' in your main() method:
+    calculate_detection_stats(df_boxplot, floor_thresholds)
+
+
+    # --- STEP 4: Calculating Metrics for the Article Text ---
+
+    def print_paper_metrics(df):
+        # --- CONFIGURATION (ADJUST HERE) ---
+# Define which groups belong to each side based on your visual observation of the boxplot.
+# 'Koppigen' = Side with high indices (localized damage).
+# 'Utzenstorf' = Side with low/normal indices.
+        utzenstorf_groups = ['g1', 'g2', 'g3']      
+        koppigen_groups = ['g4', 'g5', 'g6']    
+        
+        damage_scenarios = ['d_1', 'd_2', 'd_3', 'd_4', 'd_5']
+        intact_test_scenario = 'd_0_unknown'
+
+        # --- CALCULATIONS ---
+        # Filter only data from damage scenarios.
+        df_damage = df[df['cenario'].isin(damage_scenarios)]
+        
+        # 1. Calculation of X: Spatial Comparison (Damaged Side vs. Undamaged Side)
+        mean_di_koppigen = df_damage[df_damage['andar'].isin(koppigen_groups)]['di'].mean()
+        mean_di_utzenstorf = df_damage[df_damage['andar'].isin(utzenstorf_groups)]['di'].mean()
+        
+        X = mean_di_koppigen / mean_di_utzenstorf if mean_di_utzenstorf > 0 else 0
+
+        # 2. Calculation of Y: Condition Comparison (Damage vs. Intact Test on the affected side)
+        df_intact = df[df['cenario'] == intact_test_scenario]
+        mean_di_koppigen_intact = df_intact[df_intact['andar'].isin(koppigen_groups)]['di'].mean()
+        
+        Y = mean_di_koppigen / mean_di_koppigen_intact if mean_di_koppigen_intact > 0 else 0
+
+        # --- OUTPUT ---
+        print("-" * 60)
+        print("VALORES PARA O TEXTO DO ARTIGO")
+        print("-" * 60)
+        print(f"Grupos definidos como Koppigen (Dano): {koppigen_groups}")
+        print(f"Grupos definidos como Utzenstorf:      {utzenstorf_groups}")
+        print("-" * 60)
+        print(f"Média DI (Koppigen side, Damage Scenarios): {mean_di_koppigen:.4f}")
+        print(f"Média DI (Utzenstorf side, Damage Scenarios): {mean_di_utzenstorf:.4f}")
+        print(f"Média DI (Koppigen side, Intact Test): {mean_di_koppigen_intact:.4f}")
+        print("-" * 60)
+        print(f"X (Razão Espacial): {X:.2f}")
+        print(f"Y (Razão Dano/Intacto): {Y:.2f}")
+        print("-" * 60)
+        print("\nFRASE PREENCHIDA:")
+        print(f"...are, on average, {X:.1f} times higher than those on the Utzenstorf side...")
+
+    
+    print_paper_metrics(df_boxplot)
 if __name__ == "__main__":
-
     main()
+
