@@ -1,7 +1,7 @@
 %% SCRIPT DE PRÉ-PROCESSAMENTO CWT - Z24 BRIDGE (COM OVERLAP 25%)
-% Autor: Adaptado para MATLAB
-% Descrição: Processa arquivos .mat da Z24, aplica janelamento com sobreposição,
-% CWT e salva como imagens para Deep Learning.
+% Autor: Victor Higino Meneguitte Alves
+% Description: Processes .mat files from Z24, applies windowing with overlay,
+% CWT and saves as images for Deep Learning.
 
 clear; clc; close all;
 
@@ -9,19 +9,19 @@ clear; clc; close all;
 input_folder = '/MATLAB Drive/Doutorado/Z24/Z24_Raw_Data';
 output_folder = 'Z24_Imagens_CWT_v1_MATLAB';
 
-% Parâmetros do Sinal e Janelamento
-Fs = 100;               % Frequência de amostragem
-NumSensors = 7;         % Quantidade de sensores
+% Signal Parameters and Windowing
+Fs = 100;               % Sampling frequency
+NumSensors = 7;         % Number of sensors
 
-WindowSize = 1000;      % Tamanho da janela (amostras)
-OverlapPerc = 0.25;     % 25% de sobreposição
+WindowSize = 1000;      % Window size (samples)
+OverlapPerc = 0.25;     % 25% overlap
 
-% Cálculo do Passo (Stride)
-% Se Overlap é 25%, andamos 75% da janela para frente
+% Stride Calculation
+% If the overlap is 25%, we move 75% of the window forward.
 OverlapSamples = floor(WindowSize * OverlapPerc);
 StepSize = WindowSize - OverlapSamples; 
 
-% Lista de Arquivos e Cenários
+% List of Files and Scenarios
 file_list = {
     'Z24_d0.mat', 'SPECIAL_SPLIT'; 
     'Z24_d1.mat', 'd_1';
@@ -31,7 +31,7 @@ file_list = {
     'Z24_d5.mat', 'd_5'
 };
 
-%% --- Início do Processamento ---
+%% --- Start of Processing ---
 if ~exist(output_folder, 'dir')
     mkdir(output_folder);
 end
@@ -51,7 +51,7 @@ for f = 1:size(file_list, 1)
     
     disp(['Lendo arquivo: ' filename '...']);
     
-    % --- Carregamento Dinâmico dos Dados ---
+    % --- Dynamic Data Loading ---
     loaded_struct = load(full_path);
     field_names = fieldnames(loaded_struct);
     data_matrix = [];
@@ -73,7 +73,7 @@ for f = 1:size(file_list, 1)
         data_matrix = data_matrix(:, 1:NumSensors);
     end
     
-    % --- Cálculo de Janelas com Overlap ---
+    % --- Window Calculation with Overlap ---
     num_samples = size(data_matrix, 1);
     
     % Fórmula para número de janelas deslizantes: floor((N - W) / S) + 1
@@ -84,7 +84,7 @@ for f = 1:size(file_list, 1)
         warning('O arquivo %s é menor que o tamanho da janela!', filename);
     end
     
-    % --- Lógica de Split (Intact vs Unknown) ---
+    % --- Split Logic (Intact vs Unknown) ---
     is_split_mode = strcmp(filename, 'Z24_d0.mat');
     split_idx = num_windows; 
     
@@ -93,20 +93,20 @@ for f = 1:size(file_list, 1)
         fprintf('   -> Modo Split: %d janelas Intact / %d janelas Unknown (Total: %d)\n', split_idx, num_windows - split_idx, num_windows);
     end
     
-    % --- Loop por Sensor ---
+    % --- Loop by Sensor ---
     for sensor_idx = 1:NumSensors
         sensor_name = sprintf('Sensor%d', sensor_idx);
         signal_full = data_matrix(:, sensor_idx);
         
-        % --- Loop por Janela (Deslizante) ---
+        % --- Loop by Window (Sliding) ---
         for w = 1:num_windows
-            % Define índices com base no StepSize
+            % Define indexes based on StepSize
             idx_start = (w-1) * StepSize + 1;
             idx_end = idx_start + WindowSize - 1;
             
             signal_window = signal_full(idx_start:idx_end);
             
-            % Define a pasta de destino
+            % Defines the destination folder
             if is_split_mode
                 if w <= split_idx
                     target_scenario = 'd_0_intact';
@@ -117,13 +117,13 @@ for f = 1:size(file_list, 1)
                 target_scenario = default_scenario;
             end
             
-            % Cria diretório
+            % Creates directory
             final_dir = fullfile(output_folder, target_scenario, sensor_name);
             if ~exist(final_dir, 'dir')
                 mkdir(final_dir);
             end
             
-            % --- Processamento CWT e Imagem ---
+            % --- CWT and Image Processing ---
             [cfs, ~] = cwt(signal_window, 'morse', Fs); 
             
             cfs_abs = abs(cfs);
@@ -141,17 +141,18 @@ for f = 1:size(file_list, 1)
             img_resized = imresize(img_norm, [256 256]);
             img_final = im2uint8(img_resized);
             
-            % Salvar Imagem
+            % Save Image
             [~, file_base_name, ~] = fileparts(filename);
             img_name = sprintf('%s_Win%03d.png', file_base_name, w);
             imwrite(img_final, fullfile(final_dir, img_name));
             
-        end % fim loop windows
-    end % fim loop sensors
+        end % end loop windows
+    end % end loop sensors
     
     disp(['   -> Concluído: ' filename]);
     
-end % fim loop files
+end % end loop files
 
 disp(' ');
-disp('Processamento com Overlap concluído!');
+
+disp('Concluído!');
