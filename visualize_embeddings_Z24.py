@@ -12,7 +12,7 @@ import optuna
 from sklearn.decomposition import PCA
 import pandas as pd
 # ==============================================================================
-# SEÇÃO DE CONFIGURAÇÃO
+# CONFIGURATION SECTION
 # ==============================================================================
 BASE_DIR_OUTPUT = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo"
 OUTPUT_DIR = os.path.join(BASE_DIR_OUTPUT, 'optuna_optimization_output_Z24')
@@ -32,7 +32,7 @@ DAMAGE_SCENARIOS = ['d_0_intact', 'd_0_unknown', 'd_1', 'd_2', 'd_3', 'd_4', 'd_
 INTACT_CONDITION_NAME = 'd_0_intact'
 
 # ==============================================================================
-# 1. FUNÇÃO PARA CARREGAR O MELHOR MODELO DO ESTUDO OPTUNA
+#1. FUNCTION TO LOAD THE BEST OPTUNA STUDY MODEL
 # ==============================================================================
 def find_best_model_from_study(study_name, storage_url, output_dir):
     """Carrega um estudo Optuna, encontra o melhor trial e retorna o caminho
@@ -56,7 +56,7 @@ def find_best_model_from_study(study_name, storage_url, output_dir):
         return None, None
 
 # ==============================================================================
-# 2. DEFINIÇÃO DO MODELO CCAE
+#2. DEFINITION OF THE CCAE MODEL
 # ==============================================================================
 class CCAE(nn.Module):
     def __init__(self, num_sensors, bottleneck_channels, classifier_linear_dim, dropout_rate):
@@ -76,9 +76,9 @@ class CCAE(nn.Module):
             nn.Conv2d(128, bottleneck_channels, kernel_size=3, stride=1, padding=1),
             nn.BatchNorm2d(bottleneck_channels), nn.ReLU()
         )
-        # Embedding do sensor
+        # Embedding
         self.sensor_embedding = nn.Embedding(num_sensors, 64) 
-        # Classificador
+        # Classifier
         classifier_input_dim = bottleneck_channels * 8 * 8
         self.classifier = nn.Sequential(
             nn.Flatten(),
@@ -111,7 +111,7 @@ class CCAE(nn.Module):
         return x_reconstructed, sensor_logits
 
 # ==============================================================================
-# 3. DEFINIÇÕES DE DATASET E DATALOADER
+# 3. DEFINITIONS OF DATASET AND DATALOADER
 # ==============================================================================
 class CWTDatasetAnalysis(Dataset):
     def __init__(self, root_folder, all_sensors_for_mapping):
@@ -178,13 +178,13 @@ def load_best_model(model_path, device, num_sensors, fixed_params, best_hyperpar
         return None
 
 # ==============================================================================
-# 4. FUNÇÃO PARA VISUALIZAR OS EMBEDDINGS DOS SENSORES
+#4. FUNCTION FOR VIEWING SENSOR EMBEDDINGS
 # ==============================================================================
 def plot_sensor_embeddings(model, all_sensor_data):
     """
-    Plots the pure sensor embeddings and the mixed embeddings from each sample
-    on a grid of plots, using PCA. Markers indicate correct ('o') and
-    incorrect ('x') model classifications.
+    Plots the pure sensor embeddings and the mixed embeddings from each sample 
+on a grid of plots, using PCA. Markers indicate correct ('o') and 
+incorrect ('x') model classifications.
     """
     print("\n--- Gerando visualização PCA dos embeddings: Análise de Classificação ---")
 
@@ -254,16 +254,15 @@ def plot_sensor_embeddings(model, all_sensor_data):
             start_idx = end_idx
 
     # ==========================================================================
-    # PLOTAGEM
+    # PLOTTING
     # ==========================================================================
     
     plt.rcParams['font.family'] = 'Times New Roman'
     plt.rcParams['mathtext.fontset'] = 'cm'
     
-    # Aumenta o tamanho da fonte para melhor legibilidade no plot maior
+    # Increase the font size for better readability on the larger plot
     plt.rcParams.update({'font.size': 30})
     
-    # AJUSTE CHAVE: Aumenta o tamanho da figura para 7 cenários
     fig, axes = plt.subplots(nrows=2, ncols=4, figsize=(28, 14), sharex=True, sharey=True)
     ax_flat = axes.flatten()
     
@@ -312,7 +311,7 @@ def plot_sensor_embeddings(model, all_sensor_data):
         for i, txt in enumerate(sensor_names):
             offset_y = 15 if i == 0 else -18
             offset_y = -5 if i == 6 else -18
-            offset_x = -100 if i == 1 else 18  # Sensor 2 (i=1) fica à esquerda
+            offset_x = -100 if i == 1 else 18  # Sensor 2 (i=1) label manual adjustments
             ax.annotate(txt, (pure_pca[i, 0], pure_pca[i, 1]),
                         xytext=(offset_x, offset_y), textcoords='offset points', fontsize=22, zorder=3)
         
@@ -321,12 +320,12 @@ def plot_sensor_embeddings(model, all_sensor_data):
         ax.tick_params(axis='both', which='major', labelsize=28)
         ax.grid(True, linestyle='--', alpha=0.6)
     
-    # Oculta o último subplot (8) já que temos apenas 7 cenários
+    
     ax_flat[7].axis('off')
     
     fig.subplots_adjust(hspace=0.3, wspace=0.2)
     
-    # Adiciona rótulos únicos para X e Y
+    # Add unique labels for X and Y
     fig.supxlabel(xlabel_text, fontsize=32, y=0.02, fontfamily='times new roman')
     fig.supylabel(ylabel_text, fontsize=32, x=0.05, fontfamily='times new roman')
     
@@ -357,15 +356,15 @@ def calcular_tabela_erros(model, all_sensor_data, device):
     """
     print("\n--- Calculando Taxas de Erro de Classificação por Cenário ---")
     
-    # Dicionário para acumular totais por cenário
-    # Estrutura: { 'nome_cenario': {'total': 0, 'erros': 0} }
+    # Dictionary for accumulating totals by scenario
+    # Structure: { 'scenario_name': {'total': 0, 'errors': 0} }
     stats = {}
 
     model.eval()
     with torch.no_grad():
-        # Itera sobre sensores
+        # Iterates over sensors.
         for sensor_name, conditions in all_sensor_data.items():
-            # Itera sobre condições (cenários)
+            # Iterates over conditions (scenarios)
             for condition, dataloader in conditions.items():
                 if dataloader is None:
                     continue
@@ -377,25 +376,25 @@ def calcular_tabela_erros(model, all_sensor_data, device):
                     if images.numel() == 0: continue
                     
                     images = images.to(device)
-                    # Ground truths vêm como lista, converte para tensor
+                    # Ground truths
                     labels = torch.tensor(ground_truths).to(device)
 
-                    # Inferência (apenas parte necessária para classificação)
+                    # Inference (only the part necessary for classification)
                     x = model.encoder(images)
                     encoded_features = model.bottleneck_conv(x)
                     sensor_logits = model.classifier(encoded_features)
                     
-                    # Predição
+                    # Prediction
                     _, predicted = torch.max(sensor_logits, 1)
                     
-                    # Contabilização
+                    # Accounting
                     batch_total = labels.size(0)
                     batch_errors = (predicted != labels).sum().item()
                     
                     stats[condition]['total'] += batch_total
                     stats[condition]['erros'] += batch_errors
 
-    # Criação da Tabela
+    # Table creation
     table_data = []
     for condition, data in stats.items():
         if data['total'] > 0:
@@ -411,8 +410,6 @@ def calcular_tabela_erros(model, all_sensor_data, device):
     
     df = pd.DataFrame(table_data)
     
-    # Ordenar conforme a lista DAMAGE_SCENARIOS se possível, senão alfabético
-    # Mapeamento de ordem customizado baseado no seu código original
     order_map = {v: k for k, v in enumerate(['d_0_intact', 'd_0_unknown', 'd_1', 'd_2', 'd_3', 'd_4', 'd_5'])}
     df['sort_key'] = df['Cenário'].map(order_map)
     df = df.sort_values('sort_key').drop('sort_key', axis=1)
@@ -421,7 +418,7 @@ def calcular_tabela_erros(model, all_sensor_data, device):
     print(df.to_string(index=False))
     
 # ==============================================================================
-# 5. FUNÇÃO PRINCIPAL
+# 5. MAIN FUNCTION
 # ==============================================================================
 def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -460,4 +457,5 @@ def main():
 
     calcular_tabela_erros(model, all_sensor_data, device)
 if __name__ == "__main__":
+
     main()
