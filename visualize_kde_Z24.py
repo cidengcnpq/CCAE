@@ -15,44 +15,39 @@ import optuna
 from itertools import combinations
 from datetime import datetime
 # ==============================================================================
-# SEÇÃO DE CONFIGURAÇÃO
+# CONFIGURATION SECTION
 # ==============================================================================
 
-# --- Configurações de Diretórios do Estudo Optuna ---
+# --- Optuna Study Directory Settings ---
 BASE_DIR_OUTPUT = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo"
 OUTPUT_DIR = os.path.join(BASE_DIR_OUTPUT, 'optuna_optimization_output_Z24')
 STUDY_NAME = "ccae_hyperparam_optimization_Z24"
 DB_FILENAME = "ccae_optimization_Z24.db"
 
-# --- Configurações de Diretórios dos Dados de Análise ---
+# --- Analysis Data Directory Settings ---
 ROOT_DATA_DIR = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo/imagens_CWT_Z24_v1_matlab"
 
-# --- Configurações do Modelo Fixo (IDÊNTICO AO TREINAMENTO) ---
+# --- Fixed Model Settings (IDENTICAL TO TRAINING) ---
 FIXED_PARAMS = {
     'classifier_linear_dim': 64,
     'bottleneck_channels': 4
 }
 
-# --- Configurações do Dataset e Análise ---
+# --- Dataset and Analysis Settings ---
 ALL_SENSORS_MODEL_TRAINED_ON = [f'Sensor{i}' for i in range(1, 8)]
 NUM_SENSORS_IN_TRAINED_MODEL = len(ALL_SENSORS_MODEL_TRAINED_ON)
 DAMAGE_SCENARIOS = ['d_0_intact', 'd_0_unknown', 'd_1', 'd_2', 'd_3', 'd_4', 'd_5']
 INTACT_CONDITION_NAME = 'd_0_intact'
 
 # ==============================================================================
-# <<<<<<<<<<<<<<<<<<<   CONFIGURAÇÃO DA VISUALIZAÇÃO   >>>>>>>>>>>>>>>>>
+# <<<<<<<<<<<<<<<<<<< DISPLAY CONFIGURATION >>>>>>>>>>>>>>>>>
 # ==============================================================================
-# Grupos de sensores a visualizar
+# Choose which sensor group you want to view.
 FLOORS_TO_VISUALIZE = ['g2', 'g5', 'g6']
 # ==============================================================================
 
-
-# NOTE: As classes e funções de `find_best_model_from_study` a `calculate_scaling_factor_all_sensors`
-# são idênticas às do seu script original. Elas estão incluídas aqui para que este
-# script seja executável de forma independente.
-
 # ==============================================================================
-# 2. DEFINIÇÃO DO MODELO CCAE E FUNÇÕES AUXILIARES (COPIADO DO SCRIPT ORIGINAL)
+# 2. DEFINITION OF THE CCAE MODEL AND AUXILIARY FUNCTIONS
 # ==============================================================================
 
 class CCAE(nn.Module):
@@ -103,9 +98,6 @@ class CCAE(nn.Module):
             pooled_latent = nn.AdaptiveAvgPool2d((1, 1))(concatenated_features)
             return pooled_latent.view(pooled_latent.size(0), -1)
 
-# Include find_best_model_from_study, CWTDatasetAnalysis, etc. (all helper functions from the original script)
-# For brevity, these are assumed to be present and are omitted from this code block.
-# Please copy them from your original script into this one.
 def find_best_model_from_study(study_name, storage_url, output_dir):
     try:
         study = optuna.load_study(study_name=study_name, storage=storage_url)
@@ -208,7 +200,7 @@ def calculate_scaling_factor_all_sensors(model, dataloaders, device):
 
 
 # ==============================================================================
-# 3. VISUALIZAÇÃO DO KDE
+# 3. KDE VISUALIZATION
 # ==============================================================================
 
 def plot_kde_visualizations(kde_model, intact_mds_array, damaged_mds_dict, sensor_names, floor_name):
@@ -228,16 +220,16 @@ def plot_kde_visualizations(kde_model, intact_mds_array, damaged_mds_dict, senso
         print("❌ Visualização requer pelo menos 2 sensores no grupo.")
         return
 
-    # Gera todas as combinações de pares de sensores
+    # Generates all combinations of sensor pairs
     sensor_pairs = list(combinations(range(num_sensors), 2))
     
-    # Define o layout da grade de plots
+    # Define the plot grid layout
     n_cols = 3
     n_rows = (len(sensor_pairs) + n_cols - 1) // n_cols
     fig, axes = plt.subplots(n_rows, n_cols, figsize=(n_cols * 5, n_rows * 5))
     axes = axes.flatten()
 
-    # Calcula a média dos MDs intactos para usar nas dimensões não plotadas
+    # Calculates the average of intact MDs to use in unplotted dimensions.
     mean_mds_intact = np.mean(intact_mds_array, axis=0)
     
     print(f"\n--- Gerando visualizações para {floor_name} ---")
@@ -253,27 +245,26 @@ def plot_kde_visualizations(kde_model, intact_mds_array, damaged_mds_dict, senso
         xx, yy = np.mgrid[x_min - x_pad : x_max + x_pad : 100j, 
                           y_min - y_pad : y_max + y_pad : 100j]
 
-        # Cria os pontos de avaliação N-dimensionais
-        # As dimensões que não estão sendo plotadas são fixadas na sua média
+        # Creates N-dimensional evaluation points
         eval_points = np.tile(mean_mds_intact, (xx.ravel().shape[0], 1))
         eval_points[:, dim1] = xx.ravel()
         eval_points[:, dim2] = yy.ravel()
 
-        # Avalia o KDE na grade e calcula a densidade
+        # Evaluate KDE on the grid and calculate density
         log_density = kde_model.score_samples(eval_points)
         Z = np.exp(log_density).reshape(xx.shape)
 
-        # Plota o contorno da densidade (heatmap)
+        # Plots the density contour (heatmap)
         contour = ax.contourf(xx, yy, Z, levels=15, cmap='viridis_r')
-        if i >= 2:  # Mostra colorbar apenas a partir do 3º gráfico
+        if i >= 2: 
             fig.colorbar(contour, ax=ax, label='Densidade de Probabilidade')
 
-        # Sobrepõe os pontos de dados
-        # 1. Dados intactos (base para o KDE)
+        # Overlays data points
+        # 1. Intact data (base for KDE)
         ax.scatter(intact_mds_array[:, dim1], intact_mds_array[:, dim2], 
                    s=10, c='white', edgecolor='black', alpha=0.7, label='Intacto (Treino)')
                    
-        # 2. Dados de dano
+        #2. Damage Data
         colors = {'d_1': 'red', 'd_2': 'orange'}
         for scenario, mds_array in damaged_mds_dict.items():
             if mds_array.size > 0:
@@ -283,18 +274,18 @@ def plot_kde_visualizations(kde_model, intact_mds_array, damaged_mds_dict, senso
         ax.set_xlabel(f'MD {sensor_names[dim1]}')
         ax.set_ylabel(f'MD {sensor_names[dim2]}')
         ax.set_title(f'{sensor_names[dim1]} vs {sensor_names[dim2]}')
-        if i == 0:  # Mostra legenda apenas no primeiro gráfico
+        if i == 0:  # The legend is only displayed on the first graph.
             ax.legend()
         ax.grid(True, linestyle='--', alpha=0.5)
 
-    # Oculta eixos não utilizados
+    # Hide unused axes
     for j in range(i + 1, len(axes)):
         axes[j].set_visible(False)
 
     #fig.suptitle(f'Visualização da Densidade do KDE para o Grupo "{floor_name}"', fontsize=16, weight='bold')
     plt.tight_layout(rect=[0, 0, 1, 0.96])
     
-    # Salva a figura
+    # Save figure
     plots_save_dir = os.path.join(os.path.dirname(ROOT_DATA_DIR), 'plots_kde_visualization')
     os.makedirs(plots_save_dir, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -313,18 +304,18 @@ def plot_kde_visualizations_multifloor(kde_models_dict, intact_mds_arrays, damag
     Gera uma figura com 3 subplots (um para cada andar/grupo) de contorno 2D KDE.
 
     Args:
-        kde_models_dict (dict): Dicionário com modelos KDE treinados para cada andar.
-                                Ex: {'g2': kde_model, 'g5': kde_model, 'g6': kde_model}
-        intact_mds_arrays (dict): Dicionário com arrays de vetores MD intactos para cada andar.
-        damaged_mds_dict_all (dict): Dicionário aninhado com vetores MD de dano para cada andar e cenário.
-                                      Ex: {'g2': {'d_1': array, ...}, 'g5': {...}, ...}
-        sensor_groups_by_floor (dict): Dicionário com grupos de sensores para cada andar.
-        floors_to_plot (list): Lista de andares a plotar (ex: ['g2', 'g5', 'g6'])
+        kde_models_dict (dict): Dictionary with trained KDE models for each floor.
+Ex: {'g2': kde_model, 'g5': kde_model, 'g6': kde_model}
+        intact_mds_arrays (dict): Dictionary with arrays of intact MD vectors for each floor.
+        damaged_mds_dict_all (dict): Nested dictionary with MD damage vectors for each floor and scenario.
+Ex: {'g2': {'d_1': array, ...}, 'g5': {...}, ...}
+        sensor_groups_by_floor (dict): Dictionary with groups of sensors for each floor.
+        floors_to_plot (list): List of floors to plot (e.g., ['g2', 'g5', 'g6'])
     """
     
     num_floors = len(floors_to_plot)
     fig, axes = plt.subplots(1, num_floors, figsize=(num_floors * 8, 6), squeeze=False)
-    axes = axes[0]  # Pega a primeira (e única) linha
+    axes = axes[0]  
     
     print(f"\n--- Gerando visualizações KDE para {floors_to_plot} ---")
     
@@ -345,10 +336,10 @@ def plot_kde_visualizations_multifloor(kde_models_dict, intact_mds_arrays, damag
             print(f"❌ {floor_name}: Visualização requer pelo menos 2 sensores.")
             continue
         
-        # Usa o primeiro par de sensores para visualização
+        # Use the first pair of sensors for visualization.
         dim1, dim2 = 0, 1
         
-        # Define a grade 2D para a avaliação do KDE
+        # Define the 2D grid for KDE evaluation
         x_min, x_max = intact_mds_array[:, dim1].min(), intact_mds_array[:, dim1].max()
         y_min, y_max = intact_mds_array[:, dim2].min(), intact_mds_array[:, dim2].max()
         x_pad = (x_max - x_min) * 0.2
@@ -356,36 +347,36 @@ def plot_kde_visualizations_multifloor(kde_models_dict, intact_mds_arrays, damag
         xx, yy = np.mgrid[x_min - x_pad : x_max + x_pad : 100j, 
                           y_min - y_pad : y_max + y_pad : 100j]
         
-        # Cria os pontos de avaliação N-dimensionais
+        # Creates N-dimensional evaluation points
         mean_mds_intact = np.mean(intact_mds_array, axis=0)
         eval_points = np.tile(mean_mds_intact, (xx.ravel().shape[0], 1))
         eval_points[:, dim1] = xx.ravel()
         eval_points[:, dim2] = yy.ravel()
         
-        # Avalia o KDE na grade e calcula a densidade
+        # Evaluate KDE on the grid and calculate density
         log_density = kde_model.score_samples(eval_points)
         Z = np.exp(log_density).reshape(xx.shape)
         
-        # Plota o contorno da densidade (heatmap)
+        # Plots the density contour (heatmap)
         contour = ax.contourf(xx, yy, Z, levels=15, cmap='viridis_r')
         
-        # Adiciona colorbar apenas no terceiro subplot (idx == 2, que é g6)
+        # Add colorbar only to the third subplot
         if idx == 2:
             cbar = fig.colorbar(contour, ax=ax, label='Probability Density Function $p_g(.)$')
         
-        # Sobrepõe os pontos de dados
+        # Overlays the data points
         intact_label = 'Intact (train)' if idx == 2 else ''
         ax.scatter(intact_mds_array[:, dim1], intact_mds_array[:, dim2], 
                    s=10, c='white', edgecolor='black', alpha=0.7, label=intact_label)
         
-        # Dados de dano - cores baseadas em scenario_colors, evitando amarelo e laranja
+        # # Damage data
         colors = {
-            'd_0_unknown': '#00BCD4',  # Ciano
-            'd_1': '#EA4335',           # Vermelho
-            'd_2': '#C2185B',           # Rosa/Magenta escuro (bem diferente do vermelho)
-            'd_3': '#9C27B0',           # Roxo
-            'd_4': '#1565C0',           # Azul escuro (substitui laranja)
-            'd_5': '#34A853'            # Verde
+            'd_0_unknown': '#00BCD4',  
+            'd_1': '#EA4335',           
+            'd_2': '#C2185B',           
+            'd_3': '#9C27B0',           
+            'd_4': '#1565C0',           
+            'd_5': '#34A853'            
         }
         legend_added = set()
         scenario_labels = {
@@ -412,7 +403,7 @@ def plot_kde_visualizations_multifloor(kde_models_dict, intact_mds_arrays, damag
     
     plt.tight_layout()
     
-    # Salva a figura
+    # Save Figure
     plots_save_dir = os.path.join(os.path.dirname(ROOT_DATA_DIR), 'plots_kde_visualization')
     os.makedirs(plots_save_dir, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -424,17 +415,17 @@ def plot_kde_visualizations_multifloor(kde_models_dict, intact_mds_arrays, damag
 
 
 # ==============================================================================
-# 4. SCRIPT PRINCIPAL DE EXECUÇÃO
+#4. MAIN EXECUTION SCRIPT
 # ==============================================================================
 if __name__ == "__main__":
     
     TAMANHO_FONTE_BASE = 17
     plt.rcParams.update({
-        # --- Configurações de Fonte ---
-        'font.family': 'times new roman',                         # 1. Define a família da fonte para o texto NORMAL
-        'mathtext.fontset': 'stix',                     # 2. <--- ADICIONADO: Garante que a fonte da FÓRMULA combine com a do texto
+        # --- Font Settings ---
+        'font.family': 'times new roman',                        
+        'mathtext.fontset': 'stix',                     
         
-        # --- Configurações de Tamanho ---
+        # --- Size Settings ---
         'font.size': TAMANHO_FONTE_BASE,
         'axes.titlesize': TAMANHO_FONTE_BASE + 2,
         'axes.labelsize': TAMANHO_FONTE_BASE,
@@ -448,7 +439,7 @@ if __name__ == "__main__":
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Usando dispositivo: {device}")
 
-    # --- ETAPA 1: Carregar o melhor modelo treinado ---
+    # --- STEP 1: Load the best trained model ---
     db_path = os.path.join(OUTPUT_DIR, DB_FILENAME)
     storage_url = f"sqlite:///{db_path}"
     best_model_path, best_hyperparams = find_best_model_from_study(STUDY_NAME, storage_url, OUTPUT_DIR)
@@ -460,7 +451,7 @@ if __name__ == "__main__":
     if model is None:
         exit()
 
-    # --- ETAPA 2: Processar os dados (igual ao script original) ---
+    # --- STEP 2: Process the data (same as the original script) ---
     sensor_groups_by_floor = {
         'g1': ['Sensor1','Sensor2'],
         'g2': ['Sensor2','Sensor3'],
@@ -470,7 +461,7 @@ if __name__ == "__main__":
         'g6': ['Sensor6','Sensor7']
     }
     
-    # Valida que os grupos a visualizar estão configurados
+    # Verifies that the groups to be viewed are configured.
     for floor in FLOORS_TO_VISUALIZE:
         if floor not in sensor_groups_by_floor:
             print(f"❌ Erro: '{floor}' não é um grupo de sensores válido.")
@@ -508,7 +499,7 @@ if __name__ == "__main__":
             except np.linalg.LinAlgError:
                 print(f"Aviso: Matriz singular para o sensor {sensor_name}. Pulando.")
 
-    # --- ETAPA 3: Preparar dados e treinar KDE para TODOS os andares (g2, g5, g6) ---
+    # --- STEP 3: Prepare data and train KDE
     kde_models_dict = {}
     intact_mds_arrays_dict = {}
     damaged_mds_dict_all = {}
@@ -517,7 +508,7 @@ if __name__ == "__main__":
         print(f"\n--- Processando andar {floor_name} ---")
         sensors_in_floor = sensor_groups_by_floor[floor_name]
         
-        # Coleta de dados intactos
+        # Collect intact data
         all_filenames_intact = set().union(*(sensor_mahalanobis_indicators[s].get(INTACT_CONDITION_NAME, {}).keys() for s in sensors_in_floor))
         floor_intact_mds_vectors = []
         for fname in sorted(list(all_filenames_intact)):
@@ -532,7 +523,7 @@ if __name__ == "__main__":
         
         intact_mds_arrays_dict[floor_name] = intact_mds_array_floor
         
-        # Coleta de dados de dano para TODOS os cenários (não apenas d_0_unknown, d_1, d_2)
+        #Collect damage data
         damaged_mds_floor = {}
         for scenario in DAMAGE_SCENARIOS:
             if scenario == INTACT_CONDITION_NAME:
@@ -550,13 +541,13 @@ if __name__ == "__main__":
         
         damaged_mds_dict_all[floor_name] = damaged_mds_floor
         
-        # Treinamento do KDE para este andar
+        # KDE Training
         kde_model_floor = KernelDensity(kernel='gaussian', bandwidth='scott')
         kde_model_floor.fit(intact_mds_array_floor)
         kde_models_dict[floor_name] = kde_model_floor
         print(f"  ✓ KDE treinado. Bandwidth: {kde_model_floor.bandwidth_:.4f}")
     
-    # --- ETAPA 4: Gerar visualização com 3 subplots (g2, g5, g6) ---
+    # --- STEP 4: Visualization ---
     if len(kde_models_dict) == len(FLOORS_TO_VISUALIZE):
         plot_kde_visualizations_multifloor(
             kde_models_dict=kde_models_dict,
@@ -566,4 +557,5 @@ if __name__ == "__main__":
             floors_to_plot=FLOORS_TO_VISUALIZE
         )
     else:
+
         print(f"❌ Nem todos os andares foram processados com sucesso.")
