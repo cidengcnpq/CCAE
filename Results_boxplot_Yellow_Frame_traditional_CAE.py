@@ -17,26 +17,26 @@ import seaborn as sns
 import optuna
 
 # ==============================================================================
-# SEÇÃO DE CONFIGURAÇÃO (DEVE SER CONSISTENTE COM O SCRIPT DE TREINAMENTO CAE)
+# CONFIGURATION SECTION (TRADITIONAL CAE)
 # ==============================================================================
 
-# --- Configurações de Diretórios do Estudo Optuna ---
+# --- Optuna Study Directory Settings ---a ---
 BASE_DIR_OUTPUT = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo"
-# ATENÇÃO: Mudança para a pasta do CAE
+# Traditional CAE file
 OUTPUT_DIR = os.path.join(BASE_DIR_OUTPUT, 'optuna_optimization_output_yellow_frame_CAE')
 STUDY_NAME = "cae_hyperparam_optimization_yellow_frame"
 DB_FILENAME = "cae_optimization_yellow_frame.db"
 
-# --- Configurações dos Dados de Análise ---
+# --- Data Analysis Directory Settings ---
 ROOT_DATA_DIR = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo/imagens_cwt_yellow_frame"
 
-# --- Configurações do Modelo Fixo ---
+# --- Fixed Model Settings  ---
 FIXED_PARAMS = {
     'bottleneck_channels': 4,
-    # Parâmetros de loss/classifier removidos pois não existem no CAE
+    # loss/classifier parameters removed, do not exist in CAE
 }
 
-# --- Configurações do Dataset e Análise ---
+# --- Dataset and Analysis Settings ---
 ALL_SENSORS_MODEL_TRAINED_ON = [f'Sensor{i}' for i in range(1, 16)]
 NUM_SENSORS_IN_TRAINED_MODEL = len(ALL_SENSORS_MODEL_TRAINED_ON)
 DAMAGE_SCENARIOS = ['d_0_intact', 'd_0_unknown', 'd_1', 'd_2']
@@ -44,7 +44,7 @@ INTACT_CONDITION_NAME = 'd_0_intact'
 
 
 # ==============================================================================
-# 1. FUNÇÃO PARA CARREGAR O MELHOR MODELO DO ESTUDO OPTUNA
+# 1. FUNCTION TO LOAD THE BEST OPTUNA STUDY MODEL
 # ==============================================================================
 def find_best_model_from_study(study_name, storage_url, output_dir):
     try:
@@ -72,7 +72,7 @@ def find_best_model_from_study(study_name, storage_url, output_dir):
         return None, None
 
 # ==============================================================================
-# 2. DEFINIÇÃO DO MODELO TRADITIONAL CAE
+# 2. DEFINITION OF THE TRADITIONAL CAE MODEL
 # ==============================================================================
 class TraditionalCAE(nn.Module):
     def __init__(self, bottleneck_channels):
@@ -94,7 +94,7 @@ class TraditionalCAE(nn.Module):
             nn.BatchNorm2d(bottleneck_channels), nn.ReLU()
         )
         
-        # Decoder (Sem concatenação de embedding)
+        # Decoder (without embedding)
         decoder_input_channels = bottleneck_channels
         self.decoder = nn.Sequential(
             nn.ConvTranspose2d(decoder_input_channels, 128, kernel_size=3, stride=2, padding=1, output_padding=1), nn.BatchNorm2d(128), nn.ReLU(),
@@ -117,19 +117,17 @@ class TraditionalCAE(nn.Module):
             x_encoded = self.encoder(x)
             encoded_features = self.bottleneck_conv(x_encoded)
             
-            # Aplica Global Average Pooling para garantir vetor 1D per sample
-            # Igual ao que foi feito no CCAE para compatibilidade
+            # Applies Global Average Pooling to flatten a 1D vector.
             pooled_latent = nn.AdaptiveAvgPool2d((1, 1))(encoded_features)
             
             return pooled_latent.view(pooled_latent.size(0), -1)
 
 # ==============================================================================
-# 3. DEFINIÇÕES DE DATASET, DATALOADER, E FUNÇÕES AUXILIARES
+# 3. Definitions of Dataset, Data Loader, and Auxiliary Functions
 # ==============================================================================
 class CWTDatasetAnalysis(Dataset):
     def __init__(self, root_folder, all_sensors_for_mapping):
         self.image_paths = glob.glob(os.path.join(root_folder, '**', '*.png'), recursive=True)
-        # O mapping não é estritamente necessário no CAE, mas mantemos estrutura
         
         if not self.image_paths:
             print(f"Aviso: Nenhuma imagem PNG encontrada em: {root_folder}")
@@ -165,7 +163,6 @@ def load_all_sensor_data(root_dir, damage_scenarios, sensors_for_analysis):
         for condition in damage_scenarios:
             path = os.path.join(root_dir, condition, sensor_name)
             if os.path.isdir(path):
-                # Passamos lista vazia no sensor mapping pois não é usada aqui
                 dataset = CWTDatasetAnalysis(path, []) 
                 if len(dataset) > 0:
                     dataloader = DataLoader(dataset, batch_size=64, shuffle=False, collate_fn=collate_fn_analysis)
@@ -215,13 +212,13 @@ def load_best_model(model_path, device, fixed_params):
         return None
 
 # ==============================================================================
-# 4. FUNÇÃO PRINCIPAL PARA ANÁLISE E PLOTAGEM
+# 4. MAIN FUNCTION FOR ANALYSIS AND PLOTTING
 # ==============================================================================
 def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Usando dispositivo: {device}")
 
-    # --- ETAPA 1: Encontrar e carregar o melhor modelo ---
+   # --- STEP 1: Find and upload the best model ---
     db_path = os.path.join(OUTPUT_DIR, DB_FILENAME)
     storage_url = f"sqlite:///{db_path}"
     
@@ -237,7 +234,7 @@ def main():
     )
     if model is None: return
 
-    # --- ETAPA 2: Executar a análise de anomalia ---
+    # --- STEP 2: Run the anomaly analysis ---
     sensor_groups_by_floor = {
         'Base': ['Sensor1', 'Sensor2', 'Sensor3'],
         '1st floor': ['Sensor4', 'Sensor5', 'Sensor6'],
@@ -250,7 +247,7 @@ def main():
     print("\n--- Carregando dados para análise ---")
     all_sensor_data = load_all_sensor_data(ROOT_DATA_DIR, DAMAGE_SCENARIOS, all_sensors_for_analysis)
 
-    # NOTA: O cálculo de scaling_factor foi removido pois não se aplica ao CAE tradicional.
+    # NOTE: The scaling_factor calculation has been removed as it does not apply to traditional CAE.
         
     print("\n--- Extraindo features da camada latente (CAE) ---")
     all_sensor_latent_features = {s: {c: {} for c in DAMAGE_SCENARIOS} for s in all_sensors_for_analysis}
@@ -258,7 +255,7 @@ def main():
         print(f"Processando sensor: {sensor_name}")
         for condition, dataloader in conditions.items():
             if dataloader:
-                # Função adaptada (sem scaling factor)
+                # Adapted function (without scaling factor)
                 features_dict = extract_latent_features(model, dataloader, device)
                 all_sensor_latent_features[sensor_name][condition].update(features_dict)
 
@@ -370,7 +367,7 @@ def main():
             threshold = np.percentile(intact_di_values, 99)
             floor_thresholds[floor] = threshold
             print(f"Threshold de Anomalia para {floor}: {threshold:.4f}")
-    # 1. Definir o dicionário de mapeamento
+    # Rename scenario legends
     labels_legenda = {
         'd_0_intact': 'Intact (train)',
         'd_0_unknown': 'Intact (test)',
@@ -378,11 +375,10 @@ def main():
         'd_2': 'Damage 2'
     }
 
-    # 2. Atualizar o DataFrame com os novos nomes
-    # Usamos .map para garantir que a categoria seja preservada ou recriada
+    # 2. Update the DataFrame with the new names
     df_boxplot['cenario'] = df_boxplot['cenario'].map(labels_legenda)
 
-    # 3. Definir a nova paleta de cores usando as NOVAS chaves (nomes da legenda)
+    # 3. Define the new color palette
     nova_palette = {
         'Intact (train)': '#00BCD4',  
         'Intact (test)': '#34A853', 
@@ -393,7 +389,7 @@ def main():
     sns.boxplot(data=df_boxplot, x='andar', y='di', hue='cenario', ax=ax,
                     palette=nova_palette, 
                     showfliers=False)
-    # --- Ajuste dos Eixos (Ticks) ---
+    # --- Axis Adjustment (Ticks) ---
     for label in ax.get_xticklabels():
         label.set_fontname('Times New Roman')
         label.set_fontsize(14)
@@ -408,13 +404,13 @@ def main():
     
     ax.grid(True, which="both", ls="--", alpha=0.6)
     plt.xticks(rotation=10)
-        # 1. Cria a legenda definindo a fonte dos ITENS (prop)
+    # 1. Create the legend 
     legend = plt.legend(title='Damage scenario', 
                         bbox_to_anchor=(1.02, 1), 
                         loc='upper left',
                         prop={'family': 'Times New Roman', 'size': 12}) # Fonte dos itens
 
-    # 2. Força a alteração da fonte do TÍTULO da legenda
+    # 2. change in the font of the caption TITLE.
     plt.setp(legend.get_title(), fontname='Times New Roman', fontsize=14)
 
     plt.tight_layout(rect=[0, 0, 0.88, 1])
@@ -422,7 +418,7 @@ def main():
     plt.tight_layout(rect=[0, 0, 0.88, 1])
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    # Salva na pasta do CAE
+    # Save CAE file
     plots_save_dir = os.path.join(os.path.dirname(ROOT_DATA_DIR), 'plots_analise_melhor_modelo_CAE')
     os.makedirs(plots_save_dir, exist_ok=True)
     plot_filename = f"boxplot_DI_global_CAE_{timestamp}.png"
@@ -431,7 +427,7 @@ def main():
     plt.show()
 
 
-    # --- ETAPA 3: Cálculo de Métricas de Detecção ---
+    # --- STEP 3: Calculation of Detection Metrics ---
 
     def calculate_detection_stats(df_boxplot, floor_thresholds):
         results = []
@@ -463,4 +459,5 @@ def main():
     calculate_detection_stats(df_boxplot, floor_thresholds)
 
 if __name__ == "__main__":
+
     main()
