@@ -20,7 +20,7 @@ import optuna
 # CONFIGURATION SECTION (TRADITIONAL CAE)
 # ==============================================================================
 
-# --- Optuna Study Directory Settings ---a ---
+# --- Optuna Study Directory Settings ---
 BASE_DIR_OUTPUT = "C:/Users/F9S4/OneDrive - PETROBRAS/Área de Trabalho/códigos artigo"
 # Traditional CAE file
 OUTPUT_DIR = os.path.join(BASE_DIR_OUTPUT, 'optuna_optimization_output_yellow_frame_CAE')
@@ -461,3 +461,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
