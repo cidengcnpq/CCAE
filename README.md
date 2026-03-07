@@ -44,7 +44,7 @@
 `Models Training logs history`
 
 ###  **● Code for results boxplots visualization are on files:**
-`Results_boxplot_yellow_frame.py`, `Results_boxplot_Z24.py`
+`Results_boxplot_yellow_frame.py`, `Results_boxplot_Z24.py`, `optuna_optimization_output_yellow_frame`, `optuna_optimization_output_Z24`
 
 ###  **● Code for hybrid embeddings visualization are on files:**
 `visualize_embeddings_Yellow_Frame.py`, `visualize_embeddings_Z24.py`
