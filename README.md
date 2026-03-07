@@ -43,8 +43,11 @@
 ###  **● Models training logs are on file:**
 `Models Training logs history`
 
-###  **● Code for results boxplots visualization are on files:**
+###  **● Code for results boxplots visualization are on files (Proposed CCAE):**
 `Results_boxplot_yellow_frame.py`, `Results_boxplot_Z24.py`, `optuna_optimization_output_yellow_frame`, `optuna_optimization_output_Z24`
+
+###  **● Code for results boxplots visualization are on files (traditional CAE for comparison):**
+`Results_boxplot_Yellow_Frame_traditional_CAE.py`, `Results_boxplot_Z24_traditional_CAE.py`, `optuna_optimization_output_yellow_frame_CAE`, `optuna_optimization_output_Z24_CAE`
 
 ###  **● Code for hybrid embeddings visualization are on files:**
 `visualize_embeddings_Yellow_Frame.py`, `visualize_embeddings_Z24.py`
