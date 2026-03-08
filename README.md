@@ -68,6 +68,6 @@ The datasets used in current study are available in public repositories. The IAS
 
 [^3]: [A. Rytter, Vibrational based inspection of civil engineering structures. Dept. of Building Technology and Structural Engineering, Aalborg University, Fracture and Dynamics. R9314 (44) (1993).](https://vbn.aau.dk/en/publications/vibrational-based-inspection-of-civil-engineering-structures)
 
-[^4]: [Dyke, S. J., Bernal, D., Beck, J., & Ventura, C. (2003). Experimental phase II of the structural health monitoring benchmark problem. In Proceedings of the 16th ASCE engineering mechanics conference.]
+[^4]: [Dyke, S. J., Bernal, D., Beck, J., & Ventura, C. (2003). Experimental phase II of the structural health monitoring benchmark problem. In Proceedings of the 16th ASCE engineering mechanics conference.](https://www.researchgate.net/publication/228992770_Experimental_Phase_II_of_the_Structural_Health_Monitoring_Benchmark_Problem)
 
-[^5]: [Maeck, J., & De Roeck, G. (2003b). Description of Z24 benchmark. Mechanical Systems and Signal Processing, 17(1), 127-131]
+[^5]: [Maeck, J., & De Roeck, G. (2003b). Description of Z24 benchmark. Mechanical Systems and Signal Processing, 17(1), 127-131](https://www.sciencedirect.com/science/article/pii/S0888327002915487)
