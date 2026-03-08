@@ -61,6 +61,13 @@
 ###  **● Code for computational time evaluation is on file:**
 `Time_computational_cost_evaluation.py`
 
+> [!NOTE]
+> <p align="justify">Data availability statement
+The datasets used in current study are available in public repositories. The IASC-ASCE Benchmark Phase II dataset, described by Dyke et al. (2003) [^4], can be accessed through the DataCenterHub repository (formerly NEES at Purdue University) and is currently maintained by the University of Canterbury, New Zealand (https://datacenterhub.org/nees.html). The Z24 Bridge experimental data, detailed in the study by Maeck and De Roeck (2003) [^5], is hosted by the Structural Mechanics Section of the Department of Civil Engineering at KU Leuven and is available at https://bwk.kuleuven.be/bwm/z24.
 
 
 [^3]: [A. Rytter, Vibrational based inspection of civil engineering structures. Dept. of Building Technology and Structural Engineering, Aalborg University, Fracture and Dynamics. R9314 (44) (1993).](https://vbn.aau.dk/en/publications/vibrational-based-inspection-of-civil-engineering-structures)
+
+[^4]: [Dyke, S. J., Bernal, D., Beck, J., & Ventura, C. (2003). Experimental phase II of the structural health monitoring benchmark problem. In Proceedings of the 16th ASCE engineering mechanics conference.]
+
+[^5]: [Maeck, J., & De Roeck, G. (2003b). Description of Z24 benchmark. Mechanical Systems and Signal Processing, 17(1), 127-131]
