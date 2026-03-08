@@ -25,10 +25,10 @@
 - [X] Damage detection (Rytter scale I[^3])
 - [X] Damage localization (Rytter scale II[^3])
 
-###  **● Data and Code for Yellow Frame signal data pre-processing in MATLAB is on file:**
+###  **● Data and Code for Yellow Frame[^4] signal data pre-processing in MATLAB is on file:**
 `ambient.mat`,`Generate_images_CWT_yellow_frame.m`
 
-###  **● Data and Code for Z24 bridge signal data pre-processing in MATLAB are on files:**
+###  **● Data and Code for Z24 bridge[^5] signal data pre-processing in MATLAB are on files:**
 `Generate_Raw_data_Z24_Alves_et_al_2024.m`, `Z24_Raw_Data.zip`,`generate_image_CWT_Z24.m`,
 
 ###  **● CWT input Images (Yellow Frame)**
@@ -62,7 +62,7 @@
 `Time_computational_cost_evaluation.py`
 
 > [!NOTE]
-> <p align="justify">Data availability statement: The datasets used in current study are available in public repositories. The IASC-ASCE Benchmark Phase II dataset, described by Dyke et al. (2003) [^4], can be accessed through the DataCenterHub repository (formerly NEES at Purdue University) and is currently maintained by the University of Canterbury, New Zealand (https://datacenterhub.org/nees.html). The Z24 Bridge experimental data, detailed in the study by Maeck and De Roeck (2003) [^5], is hosted by the Structural Mechanics Section of the Department of Civil Engineering at KU Leuven and is available at https://bwk.kuleuven.be/bwm/z24.
+> <p align="justify">Data availability statement: The datasets used in current study are available in public repositories. The IASC-ASCE Benchmark Phase II dataset, described by Dyke et al. (2003) [4], can be accessed through the DataCenterHub repository (formerly NEES at Purdue University) and is currently maintained by the University of Canterbury, New Zealand (https://datacenterhub.org/nees.html). The Z24 Bridge experimental data, detailed in the study by Maeck and De Roeck (2003) [5], is hosted by the Structural Mechanics Section of the Department of Civil Engineering at KU Leuven and is available at https://bwk.kuleuven.be/bwm/z24.
 
 
 [^3]: [A. Rytter, Vibrational based inspection of civil engineering structures. Dept. of Building Technology and Structural Engineering, Aalborg University, Fracture and Dynamics. R9314 (44) (1993).](https://vbn.aau.dk/en/publications/vibrational-based-inspection-of-civil-engineering-structures)
